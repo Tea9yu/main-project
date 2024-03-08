@@ -1,24 +1,38 @@
 import logo from './logo.svg';
 import './App.css';
 
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import { RecoilRoot } from 'recoil';
+import LogForm from './components/member/LogForm';
+import Join from './components/member/Join';
+import Home from './components/main/Home';
+import Nav from './UI/Nav';
+import UploadPhotoPage from './components/clothes/PhotoUpload';
+
+
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <RecoilRoot>
+        <div>
+          <div>
+            <Nav />
+          </div>
+        </div>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/login' element={<LogForm />} />
+          <Route path='/join' element={<Join />} />
+          <Route path='/upload' element={<UploadPhotoPage />} />
+          {/* <Route path='/food' element={<BusanFoodInfo />} />
+            <Route path='/list' element={<BoardList2 />} />            
+            <Route path='/view/:seq' element={<BoardDetail />} />
+            <Route path='/write' element={<BoardWrite />} />            */}
+        </Routes>
+      </RecoilRoot>
+    </BrowserRouter>
   );
 }
 
