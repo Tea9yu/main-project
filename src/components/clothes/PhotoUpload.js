@@ -29,7 +29,9 @@ const PhotoUpload = () => {
 	    };
 	    reader.readAsDataURL(file);
 	  } else {
+			alert("파일형식이 잘못되었습니다.")
 	    console.log('Please drop an image file.');
+			window.location.reload();
 	  }
 	  // 파일 처리 로직을 여기에 추가합니다.
 	};
@@ -43,7 +45,9 @@ const PhotoUpload = () => {
 			};
 			reader.readAsDataURL(file);
 		} else {
+			alert("파일형식이 잘못되었습니다.")
 			console.log('Please drop an image file.');
+			window.location.reload();
 		}
 	};
 
@@ -61,14 +65,14 @@ const PhotoUpload = () => {
 					onDrop={handleDrop}
 					style={{ border: `2px dashed ${dragging ? 'green' : 'black'}`, padding: '10px', width: '500px', height: '600px' }}
 				>
-					{image && <img src={image} alt="Dropped" style={{ width: '100%', height: '100%' }} />}
-					{/* <p>{image ? `File name: ${image[0].name}` : "no files uploaded yet"}</p> */}
+					{image && <img src={image} alt="Dropped" style={{ width: '100%', height: '100%' }} />}					
 					{/* {dragging ? <div>Drop the file here</div> : <div>Drag a file here</div>} */}
 
 
 				</div>
 				<div className='mt-5'>
 					<input type="file" onChange={handleFileChange} />
+					{/* <p>{image ? `File name: ${image[0].name}` : "no files uploaded yet"}</p> */}
 				</div>
 				<div className='flex justify-center'>
 					<button className='w-full rounded-3xl mt-10 border p-4'>업로드</button>
