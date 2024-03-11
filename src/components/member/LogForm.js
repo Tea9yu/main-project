@@ -32,6 +32,7 @@ export default function LogForm() {
       });
       console.log('응답', response);
       alert("로그인 성공");
+      localStorage.setItem('token', response.data.accessToken); // 토큰을 localStorage에 저장
       // window.location.reload(); // 로그인 성공 시 페이지 새로고침
     } catch (error) {
       console.error("로그인 실패:", error);
@@ -98,6 +99,15 @@ export default function LogForm() {
 
               <div>
                 <button onClick={handleSubmit} type="submit" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Login</button>
+              </div>
+              <div>
+                <button href="http://10.125.121.184:8080/oauth2/authorization/google" type="submit" className="flex w-full justify-center rounded-md bg-slate-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-slate-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-500">구글Login</button>
+              </div>
+              <div>
+                <button href="http://10.125.121.184:8080/oauth2/authorization/kakao" type="submit" className="flex w-full justify-center rounded-md bg-yellow-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-yellow-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400">카카오Login</button>
+              </div>
+              <div>
+                <button href="http://10.125.121.184:8080/oauth2/authorization/naver" type="submit" className="flex w-full justify-center rounded-md bg-green-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600">네이버Login</button>
               </div>
             </form>
 
