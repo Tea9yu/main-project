@@ -7,9 +7,59 @@ export default function PhotoUpload2() {
 
 		if (e.target.files) {
 			const uploadFile = e.target.files[0]
-			const formData = new FormData()
-			formData.append('files', uploadFile)
-			console.log(uploadFile)
+			const formData = new FormData();
+			const clothes = {
+
+			}
+			// const json = JSON.stringify(clothes);
+			// const blob = new Blob([json], {
+			// 	type: "application/json",
+			// })
+
+			// formData.append('createclothesDto', blob);
+			// formData.append('files', uploadFile)
+			// console.log('uploadFile:', uploadFile)
+
+			// axios({
+			// 	method: "post",
+			// 	url: `http://10.125.121.184:8080/upload`,
+			// 	headers: {
+			// 		"Content-Type": "multipart/form-data",
+			// 	},
+			// 	data: formData,
+			// })
+			// .then ((response) => {
+			// 	if (response.status === 200) {
+			// 		console.log(response);
+			// 	} else {
+			// 		alert('전송 실패')
+			// 	}
+			// }).catch(err => {
+			// 	alert('전송 실패');
+			// })
+
+			// try {
+			// 	const response = await fetch(`http://10.125.121.184:8080/upload`, {
+			// 		method: 'POST',
+			// 		headers: {
+			// 			'Content-Type': 'multipart/form-data',
+			// 		},
+			// 		body: formData,
+			// 	});
+
+			// 	if (!response.ok) {
+			// 		throw new Error('Network response was not ok');
+			// 	}
+
+			// 	console.log('response:', response);
+			// 	const data = await response.json();
+				
+			// 	console.log('data:', data);
+			// 	alert('전송 성공');
+			// } catch (error) {
+			// 	console.error('오류 발생:', error);
+			// 	alert('전송 실패');
+			// }
 
 			// await axios({
 			// 	method: 'post',
@@ -23,6 +73,7 @@ export default function PhotoUpload2() {
 			// 	},
 			// 	responseType: "blob",
 			// })
+
 			await axios.post('http://10.125.121.184:8080/upload', formData, {
 				headers: {
 					'Content-Type': 'multipart/form-data',

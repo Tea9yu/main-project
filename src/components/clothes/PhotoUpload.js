@@ -30,7 +30,7 @@ const PhotoUpload = () => {
 	    reader.onloadend = () => {
 	      setImage(reader.result);	// 이미지를 상태에 저장
 	    };
-	    reader.readAsDataURL(file);	// 파일을 읽어 데이터 URL로 변환합니다.
+	    reader.readAsDataURL(file);		// 파일을 읽어 데이터 URL로 변환합니다.
 	  } else {
 			alert("파일형식이 잘못되었습니다.")
 	    console.log('Please drop an image file.');
@@ -64,16 +64,18 @@ const PhotoUpload = () => {
 		console.log("file",imaget)
 		const formData = new FormData();
 		// formData.append("image", image);	// img는 서버에서 이미지 파일을 참조하는데 사용하는 키이다.
-		formData.append("files", imaget); 
+		formData.append("file", imaget); 
 
 		try { 
 			const response = await axios.post(`http://10.125.121.184:8080/upload`, formData, {
 				headers: {
 					'Content-Type': 'multipart/form-data',
 				},
-				body: {
-					file: image,
-				},
+				// type: 'appication/json',
+				// body: {
+				// 	file: imaget,
+				// },
+				// responseType: 'blob',
 			});
 
 			// const response = await axios({
@@ -103,7 +105,7 @@ const PhotoUpload = () => {
 					onDrop={handleDrop}
 					style={{ border: `2px dashed ${dragging ? 'green' : 'black'}`, padding: '10px', width: '500px', height: '600px' }}
 				>
-					{image && <img src={image} alt="Dropped" style={{ width: '100%', height: '100%' }} />}					
+					{image && <img src={image} alt="Dropped" style={{ width: '100%', height: '100%' }} />}
 					{/* {dragging ? <div>Drop the file here</div> : <div>Drag a file here</div>} */}
 
 

@@ -8,7 +8,7 @@ import LogForm from './components/member/LogForm';
 import Join from './components/member/Join';
 import Home from './components/main/Home';
 import Nav from './UI/Nav';
-import UploadPhotoPage from './components/clothes/PhotoUpload2';
+import UploadPhotoPage from './components/clothes/PhotoUpload3';
 
 
 
