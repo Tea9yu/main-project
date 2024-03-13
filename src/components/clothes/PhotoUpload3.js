@@ -70,9 +70,9 @@ const ImageUpload = () => {
         <div style={{ border: `4px dashed ${selectedFile ? 'green' : 'grey'}`, borderRadius: '30px', padding: '10px', width: '500px', height: '600px' }}>
           {preview && <img src={preview} alt='Preview' style={{ width: '100%', height: '100%', borderRadius: '20px' }} />}
         </div>
-        <div className='mt-5 flex gap-5'>
+        <div className='mt-5 flex gap-5 items-center border p-2 rounded-2xl'>
           <input type="file" onChange={handleFileChange} ref={fileInput} style={{ display: 'none' }} /> {/* 파일 입력 요소를 숨깁니다 */}
-          <button onClick={() => fileInput.current.click()} className='border '>파일 선택</button> {/* 사용자 정의 버튼을 추가합니다 */}
+          <button onClick={() => fileInput.current.click()} className='border rounded-3xl bg-red-400 text-white p-2'>파일 선택</button> {/* 사용자 정의 버튼을 추가합니다 */}
           {fileName && <p>선택된 파일: {fileName}</p>} {/* 선택한 파일의 이름을 표시합니다 */}
         </div>
         <div className='flex justify-center'>

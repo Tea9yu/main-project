@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useRef, useState } from "react"
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { stLogin } from "./StAtom";
 import { useRecoilState } from "recoil";
 
@@ -113,7 +113,7 @@ export default function LogForm() {
 
             <p className="mt-10 text-center text-sm text-gray-500">
               {/* Not a member? */}
-              <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">회원가입</a>
+              <Link to='/join'><a className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">회원가입</a></Link>
             </p>
           </div>
         </div>
