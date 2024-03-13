@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 
 export default function Nav() {
 	return (
-		<div className="bg-pink-300 flex justify-center items-center gap-4">
+		<div className="bg-pink-300 flex justify-center items-center gap-4 fixed top-0 w-full z-10">
 			<nav className=" border-gray-200 py-2.5 dark:bg-gray-900">
 				<div className="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto">
 					<a href="#" className="flex items-center">
 						{/* <img src="https://www.svgrepo.com/show/499962/music.svg" className="h-6 mr-3 sm:h-9" alt="Landwind Logo" /> */}
-						<span className="mr-10 self-center text-xl font-semibold whitespace-nowrap dark:text-white">nin</span>
+						<Link to='/'>	<span className="mr-10 self-center text-xl font-semibold whitespace-nowrap dark:text-white">nine</span></Link>
 					</a>
 					<div className="flex items-center lg:order-2">
 						<div className="hidden mt-2 mr-4 sm:inline-block">
@@ -37,19 +37,19 @@ export default function Nav() {
 							<li>
 								<Link to='/'
 									className="block py-2 pl-3 pr-4 text-white bg-pink-500 rounded lg:bg-transparent lg:text-pink-500 lg:p-0 dark:text-white"
-									aria-current="page">Home</Link>
+									aria-current="page">ABOUT US</Link>
 							</li>
 							<li>
 								<Link to='/upload'
-									className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-pink-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">PhotoUpload</Link>
+									className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-pink-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">SEVICE</Link>
+							</li>
+							<li>
+								<Link to='/clothes'
+									className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-pink-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">의류</Link>
 							</li>
 							<li>
 								<Link to='/login'
-									className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-pink-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Login</Link>
-							</li>
-							<li>
-								<Link to='/join'
-									className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-pink-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Join</Link>
+									className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-pink-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">로그인</Link>
 							</li>
 						</ul>
 					</div>
@@ -58,3 +58,27 @@ export default function Nav() {
 		</div>
 	)
 }
+// {/* <div className='flex justify-start'>
+// 				<div>
+// 					<div>
+// 						<img />
+// 						<Link to='/'><span>nine</span></Link>
+// 					</div>
+// 				</div>
+// 				<div className='flex  gap-10'>
+// 					<div className=''>
+// 						<Link to='/'><span>ABOUT US</span></Link>
+// 					</div>
+// 					<div>
+// 						<Link to='/upload'><span>SEVICE</span></Link>
+// 					</div>
+// 					<div>
+// 						<span>의류</span>
+// 					</div>
+// 				</div>
+// 				<div>
+// 					<div>
+// 						<Link to='/login'><a>로그인</a></Link>
+// 					</div>					
+// 				</div>
+// 			</div>	 */}
