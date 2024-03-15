@@ -65,7 +65,7 @@ const ImageUpload = () => {
 	};
 
 	return (
-		<div className='flex justify-center mt-10'>
+		<div className='flex justify-center mt-10 bg-white'>
       <div className='m-10'>
         <div style={{ border: `4px dashed ${selectedFile ? 'green' : 'grey'}`, borderRadius: '30px', padding: '10px', width: '500px', height: '600px' }}>
           {preview && <img src={preview} alt='Preview' style={{ width: '100%', height: '100%', borderRadius: '20px' }} />}
