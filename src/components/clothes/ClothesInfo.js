@@ -54,7 +54,7 @@ export default function ClothesInfo() {
   // }, [clothesList]);
 
   // 페이지 변경 했을 때
-  const itemsCountPerPage = 50;
+  const itemsCountPerPage = 40;
   useEffect(() => {
     const start = (page - 1) * itemsCountPerPage;
     const end = start + itemsCountPerPage;
@@ -85,16 +85,16 @@ export default function ClothesInfo() {
   }, [page]);
 
   return (
-    <div className='bg-white flex justify-end'>
-      <div className='w-1/6 p-4 bg-slate-400 h-screen fixed left-0'>
+    <div className='bg-white flex'>
+      <div className='p-4 bg-slate-400 h-screen fixed left-0 min-w-[250px] max-w-[250px]'>
         <h2 className='font-bold mb-4 mt-16'>Categories</h2>
         {categories.map((category, index) => (
           <p key={index} className='mb-2'>{category}</p>
         ))}
       </div>
-      <div className='flex flex-col w-3/4 p-4  '>
+      <div className='flex flex-col flex-grow ml-64 p-4  '>
         <h2 className='font-bold mb-4 mt-16'>Products</h2>
-        <div className='grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-4 min-w-[900px]'>
+        <div className='grid xl:grid-cols-5 lg:grid-cols-4 grid-cols-4 gap-4 min-w-[900px]'>
           {clothesTag.map((item, index) =>
             <div key={index} className='flex flex-wrap justify-center'>
               <div className='border rounded-lg p-4 m-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5' 
@@ -109,7 +109,7 @@ export default function ClothesInfo() {
                 <div className=''>
                   {/* {item.productCode} */}
                 </div>
-                <div className='font-bold'>
+                <div className='font-bold mt-2'>
                   <span>{item.name}</span>
                 </div>
                 <div>

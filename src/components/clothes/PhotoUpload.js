@@ -96,7 +96,7 @@ const PhotoUpload = () => {
 	}
 
 	return (
-		<div className='flex justify-center mt-10 '>
+		<div className='flex bg-white justify-center mt-10 '>
 			<div className='m-10'>
 				<div
 					onDragEnter={handleDragEnter}
