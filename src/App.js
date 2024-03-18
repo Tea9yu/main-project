@@ -4,13 +4,14 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { RecoilRoot } from 'recoil';
-import LogForm from './components/member/LogForm';
+import Login from './components/member/Login';
 import Join from './components/member/Join';
 import Home from './components/main/Home';
 import Nav from './UI/Nav';
 import UploadPhotoPage from './components/clothes/PhotoUpload3';
 import ClothesInfo from './components/clothes/ClothesInfo';
 import Test from './Test';
+import CategorySelector from './components/clothes/CategorySelector';
 
 
 function App() {
@@ -25,7 +26,8 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/test' element={<Test />} />
-            <Route path='/login' element={<LogForm />} />
+            <Route path='/category' element={<CategorySelector />} />
+            <Route path='/login' element={<Login />} />
             <Route path='/join' element={<Join />} />
             <Route path='/upload' element={<UploadPhotoPage />} />
             <Route path='/clothes' element={<ClothesInfo />} />
