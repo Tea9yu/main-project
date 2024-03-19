@@ -27,12 +27,13 @@ export default function LogForm() {
     }
     try {
       const response = await axios.post(`http://10.125.121.184:8080/login`, {
-        username: id,
+        customerNum: id,
+        agree: "true",
         password: password,
       });
       console.log('응답', response);
       alert("로그인 성공");
-      localStorage.setItem('token', response.data.accessToken); // 토큰을 localStorage에 저장
+      localStorage.setItem('token', response.headers.authorization); // 토큰을 localStorage에 저장
       // window.location.reload(); // 로그인 성공 시 페이지 새로고침
     } catch (error) {
       console.error("로그인 실패:", error);

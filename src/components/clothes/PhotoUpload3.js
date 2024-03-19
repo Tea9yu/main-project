@@ -57,6 +57,9 @@ const ImageUpload = () => {
 
 		try {
 			const response = await fetch('http://10.125.121.184:8080/upload', {
+				headers: {
+					Authorization: localStorage.getItem("token"),
+				},
 				method: 'POST',
 				body: formData,
 			});

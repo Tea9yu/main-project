@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import Pagination from 'react-js-pagination';
 import './paginate.css';
+import ClothesFilter from './ClothesFilter';
 
 export default function ClothesInfo() {
   // const categories = ['ALL', 'OUTER', 'TOP', 'BOTTOM'];  // 상품 카테고리
   const products = ['Product1', 'Product 2', 'Product 3'];  // 상품 목록
 
-  const categoryMap = {'아우터' : ['JP', 'JK', 'CT', 'VT', 'CA'], '상의': ['TS', 'TN', 'KT', 'KN', 'BL', 'WS', 'BN'], '하의': ['PT', 'DP', 'SK', 'LG'] };  // 카테고리 매핑
-  const categories = ['ALL', ...Object.keys(categoryMap)];  // 상품 카테고리
+  // const categoryMap = {'아우터' : ['JP', 'JK', 'CT', 'VT', 'CA'], '상의': ['TS', 'TN', 'KT', 'KN', 'BL', 'WS', 'BN'], '하의': ['PT', 'DP', 'SK', 'LG'] };  // 카테고리 매핑
+  // const categories = ['ALL', ...Object.keys(categoryMap)];  // 상품 카테고리
   const [selectedCategory, setSelectedCategory] = useState('ALL');  // 추가된 상태 변수
 
   const [clothesList, setClothesList] = useState([]);
@@ -40,15 +41,26 @@ export default function ClothesInfo() {
       const resp = await fetch(`http://10.125.121.184:8080/product/items/${pgno}`, {
         method: 'GET',
       });
-      let data = await resp.json();
-      if (selectedCategory !== 'ALL') {
-        const categoryCodes = categoryMap[selectedCategory];
-        data = data.content.filter(item => categoryCodes.includes(item.productCode.slice(4, 6)));
-      }
+      let data = await resp.json();      
       setClothesList(data.content);  // 상품 목록 업데이트
       setItemsCountPerPage(data.pageable.pageSize); // 페이지 상품 개수
       setTotalNum(data.totalPages);  // 전체 상품 수 업데이트
     }
+//     const getClothesList = async (pgno) => {
+//   const resp = await fetch(`http://10.125.121.184:8080/product/items/${pgno}`, {
+//     method: 'GET',
+//   });
+//   let data = await resp.json();
+//   let filteredData = data.content;
+//   if (selectedCategory !== 'ALL') {
+//     const categoryCodes = categoryMap[selectedCategory];
+//     filteredData = data.content.filter(item => categoryCodes.includes(item.productCode.slice(4, 6)));
+//   }
+//   setClothesList(filteredData);  // 상품 목록 업데이트
+//   setItemsCountPerPage(data.pageable.pageSize); // 페이지 상품 개수
+//   setTotalNum(data.totalPages);  // 전체 상품 수 업데이트
+// }
+
 
   useEffect(() => {    
     getClothesList(page); // 페이지 번호 변경 시 새로운 상품 목록 불러옴
@@ -99,12 +111,12 @@ export default function ClothesInfo() {
     <div className='bg-white flex'>
       <div className='p-4 bg-slate-400 h-screen fixed left-0 min-w-[250px] max-w-[250px]'>
         <h2 className='font-bold mb-4 mt-16'>Categories</h2>
-        
-        {categories.map((category, index) => (
+        <ClothesFilter />
+        {/* {categories.map((category, index) => (
           <button onClick={handleBoolean} key={index} className='border flex flex-col p-2 w-full m-2 justify-center' 
           // onClick={() => setSelectedCategory(category)}
           >{category}</button>
-        ))}
+        ))} */}
       </div>
       <div className='flex flex-col flex-grow ml-64 p-4'>
         <h2 className='font-bold mb-4 mt-16'>Products</h2>

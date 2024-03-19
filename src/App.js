@@ -12,6 +12,7 @@ import UploadPhotoPage from './components/clothes/PhotoUpload3';
 import ClothesInfo from './components/clothes/ClothesInfo';
 import Test from './Test';
 import CategorySelector from './components/clothes/CategorySelector';
+import ClothesFilter from './components/clothes/ClothesFilter';
 
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/test' element={<Test />} />
-            <Route path='/category' element={<CategorySelector />} />
+            <Route path='/category' element={<ClothesFilter />} />
             <Route path='/login' element={<Login />} />
             <Route path='/join' element={<Join />} />
             <Route path='/upload' element={<UploadPhotoPage />} />
