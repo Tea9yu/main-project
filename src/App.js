@@ -10,7 +10,7 @@ import Home from './components/main/Home';
 import Nav from './UI/Nav';
 import UploadPhotoPage from './components/clothes/PhotoUpload3';
 import ClothesInfo from './components/clothes/ClothesInfo';
-import Test from './Test';
+import Test from './Test2';
 import CategorySelector from './components/clothes/CategorySelector';
 import ClothesFilter from './components/clothes/ClothesFilter';
 

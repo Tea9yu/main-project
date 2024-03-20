@@ -10,32 +10,41 @@ const ImageUpload = () => {
 	const handleFileChange = (event) => {
 		const file = event.target.files[0];
 		// setSelectedFile(event.target.files[0]);
-		if (file && file.type.startsWith('image/')) {
-			setFileName(file.name);	// 파일이 선택되면 파일 이름을 저장합니다.
-			// const reader = new FileReader();
-			// reader.onloadend = () => {
-			// 	setPreview(reader.result);
-			// };
-			// reader.readAsDataURL(file);
-			const img = new Image();
-			img.src = URL.createObjectURL(file);
-			img.onload = () => {
-				const canvas = document.createElement('canvas');
-				const MAX_WIDTH = 800; // 이미지의 최대 너비를 설정합니다.
-				const scaleSize = MAX_WIDTH / img.width; // 이미지의 스케일을 계산합니다.
-				canvas.width = MAX_WIDTH; // 캔버스의 너비를 설정합니다.
-				canvas.height = img.height * scaleSize; // 캔버스의 높이를 설정합니다.
-				const ctx = canvas.getContext('2d');
-				ctx.drawImage(img, 0, 0, canvas.width, canvas.height); // 캔버스에 이미지를 그립니다.
-				canvas.toBlob((blob) => {
-					const newFile = new File([blob], file.name, {type: 'image/jpeg'});
-					setPreview(URL.createObjectURL(newFile));
-					setSelectedFile(newFile);
+		// if (file && file.type.startsWith('image/')) {
+		// 	setFileName(file.name);	// 파일이 선택되면 파일 이름을 저장합니다.
+		// 	// const reader = new FileReader();
+		// 	// reader.onloadend = () => {
+		// 	// 	setPreview(reader.result);
+		// 	// };
+		// 	// reader.readAsDataURL(file);
+		// 	const img = new Image();
+		// 	img.src = URL.createObjectURL(file);
+		// 	img.onload = () => {
+		// 		const canvas = document.createElement('canvas');
+		// 		const MAX_WIDTH = 800; // 이미지의 최대 너비를 설정합니다.
+		// 		const scaleSize = MAX_WIDTH / img.width; // 이미지의 스케일을 계산합니다.
+		// 		canvas.width = MAX_WIDTH; // 캔버스의 너비를 설정합니다.
+		// 		canvas.height = img.height * scaleSize; // 캔버스의 높이를 설정합니다.
+		// 		const ctx = canvas.getContext('2d');
+		// 		ctx.drawImage(img, 0, 0, canvas.width, canvas.height); // 캔버스에 이미지를 그립니다.
+		// 		canvas.toBlob((blob) => {
+		// 			const newFile = new File([blob], file.name, {type: 'image/jpeg'});
+		// 			setPreview(URL.createObjectURL(newFile));
+		// 			setSelectedFile(newFile);
 					
-				}, file.type, 1);
-			};
+		// 		}, file.type, 1);
+		// 	};
+		// } 
+		// else {
+		// 	alert("파일형식이 잘못되었습니다.")
+		// 	window.location.reload();
+		// }
+		if (file && file.type.startsWith('image/')) {
+			setFileName(file.name); // 파일이 선택되면 파일 이름을 저장합니다.
+			setSelectedFile(file); // 이미지를 변환하지 않고 그대로 저장합니다.
+			setPreview(URL.createObjectURL(file));
 		} else {
-			alert("파일형식이 잘못되었습니다.")
+			alert("파일 형식이 잘못되었습니다.");
 			window.location.reload();
 		}
 		
@@ -56,7 +65,7 @@ const ImageUpload = () => {
 		formData.append('file', selectedFile);
 
 		try {
-			const response = await fetch('http://10.125.121.184:8080/upload', {
+			const response = fetch('http://10.125.121.184:8080/giveimage', {
 				headers: {
 					Authorization: localStorage.getItem("token"),
 				},
@@ -68,7 +77,7 @@ const ImageUpload = () => {
 				throw new Error('Network response was not ok');
 			}
 
-			const data = await response.text();
+			const data = response.text();
 			console.log('업로드 성공:', data);
 			alert('업로드 성공');
 		} catch (error) {

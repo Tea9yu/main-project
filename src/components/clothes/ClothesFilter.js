@@ -1,153 +1,79 @@
-// import axios from 'axios';
-// import React, { useEffect, useState } from 'react'
 
-// export default function ClothesFilter() {
-// 	const categories = {
-// 		아우터: {JP: '점퍼', JK: '자켓', CT: '코트', VT: '베스트', CD: '가디건'},
-// 		상의: {TS: '티셔츠', TN: '티셔츠나시', BL: '블라우스', NB:'남방'},
-// 		하의: {PT: '바지', DN: '데님', SK: '스커트', LG: '레깅스'},
-// 	}
-// 	const [mainCategory, setMainCategory] = useState('');
-// 	const [subCategories, setSubCategories] = useState([]);
-// 	const [clothesList, setClothesList] = useState([]);
+import React, { useState } from 'react';
+
+export default function ClothesFilter({ setSubCategory, setPageInit }) {
+  const categories = {
+    아우터: { JP: '점퍼', JK: '자켓', CT: '코트', VT: '베스트', CA: '가디건' },
+    상의: { TS: '티셔츠', TN: '티셔츠나시', KT: '니트', KN: '니트나시', BL: '블라우스', WS: '남방', BN: '블라우스나시', OP: '원피스' },
+    하의: { PT: '바지', DP: '데님', SK: '스커트', LG: '레깅스' },
+    세트: { ST: '세트' },
+  };
+
+  const [mainCategory, setMainCategory] = useState('');
+  // const [subCategories, setSubCategories] = useState({});
+  const [isOpen, setIsOpen] = useState(false);
+
+	
 	
 
-// 	useEffect(() => {
-// 		if (mainCategory) {
-// 			fetch(`http://10.125.121.184:8080/product/filter/${mainCategory}`, {
-// 				method: 'GET',
-// 			})
-			
-// 			.then(response => response.json())
-// 			.then(data => {
-// 				// setSubCategories(data);
-// 				console.log('data=', data)
-// 				const subCategories = data.map(code => categories[mainCategory][code]);
-// 				setSubCategories(subCategories);
-				
-// 			})
-// 			.catch(error => {
-// 				console.log('에러', error)
-// 			});
-// 		}
-// 	}, [mainCategory]);
+  const handleMainCategoryClick = (category) => {
+    if (mainCategory === category) {
+      setIsOpen(false); // 대분류를 다시 클릭하면 중분류를 닫습니다.
+      setMainCategory('');
+    } else {
+      setIsOpen(true); // 대분류를 클릭하면 중분류를 엽니다.
+      setMainCategory(category);
+      // 대분류에 해당하는 중분류 카테고리를 서버로부터 받아옵니다.
+      
+    }
+  };
 
-// 	const handleMainCategoryClick = (category) => {
-// 		setMainCategory(category);
-// 		// setSubCategories(categories[category]);
-// 	};
+  const handleSubCategoryClick = (subCategoryCode) => {
+    // console.log(`선택한 카테고리: ${mainCategory} - ${subCategory}`);
+    console.log(`선택한 카테고리 코드: ${subCategoryCode}`);
+    // 중분류 카테고리를 클릭했을 때 해당 카테고리에 대한 처리를 수행합니다.
+    // 예를 들어, 부모 컴포넌트에 선택한 카테고리 정보를 전달할 수 있습니다.
+    // 전달된 함수를 호출하여 선택한 카테고리 정보를 부모 컴포넌트로 전달할 수 있습니다.
+    // 이를 위해 ClothesFilter 컴포넌트의 props로 onSubCategoryClick 함수를 받아와 사용합니다.
+		// fetchSubCategories(subCategoryCode);
+    // onSubCategoryClick(mainCategory, subCategoryCode);
+		setSubCategory(subCategoryCode)
+		setPageInit(1);
+  };
 
-// 	// const handleSubCategoryClick = (subCategory) => {
-// 	// 	// setSubCategory(subCategory);
-// 	// 	console.log(`필터 : ${mainCategory} - ${subCategory}`)
-// 	// }
-
-// 	const getClothesList = async (pgno) => {
-// 		const resp = await fetch(`http://10.125.121.184:8080/product/items/${pgno}`, {
-// 			method: 'GET',
-// 		});
-// 		let data = await resp.json();      
-// 		setClothesList(data.content);  // 상품 목록 업데이트
-// 		// setItemsCountPerPage(data.pageable.pageSize); // 페이지 상품 개수
-// 		// setTotalNum(data.totalPages);  // 전체 상품 수 업데이트
-// 	}
-
-// 	const handleSubCategoryClick = async (subCategory) => {
-// 		// 서버에서 특정 서브 카테고리에 해당하는 상품 목록을 가져옵니다.
-// 		const response = await fetch(`http://10.125.121.184:8080/product/items/${mainCategory}/${subCategory}`, {
-// 			method: 'GET',
-// 		});
-// 		const data = await response.json();
-	
-// 		// 상품 목록 상태를 업데이트합니다.
-// 		setClothesList(data.content);
-// 	};
-	
-// 	return (
-// 		<div className='mt-20 bg-slate-400'>
-// 			<div className='flex flex-col'>
-// 				{Object.keys(categories).map(category => (
-// 					<button key={category} onClick={() => handleMainCategoryClick(category)} className='border p-2 m-1 w-32 bg-white'>{category}</button>
-// 				))}
-// 			</div>
-			
-// 			{subCategories.length > 0 && (
-// 				<div className='flex'>
-// 					{subCategories.map(subCategory => (
-// 						<button key={subCategory} onClick={() => handleSubCategoryClick(subCategory)} className='border p-2 m-1 w-32 bg-white'>{subCategory}</button>
-// 					))}
-// 				</div>
-// 			)}
-// 		</div>
-// 	)
-// }
-
-
-import React, { useState } from 'react'
-
-export default function ClothesFilter() {
-	const categories = {
-		아우터: ['점퍼', '자켓', '코트', '베스트', '가디건'],
-		상의: ['티셔츠', '티셔츠나시', '블라우스', '남방'],
-		하의: ['바지', '데님', '스커트', '레깅스'],
-	}
-	const [mainCategory, setMainCategory] = useState('');
-	const [subCategory, setSubCategory] = useState('');
-// 유즈스테이트 세개 
-	const [upperSel, setUpperSel] = useState(false);
-	const [botSel, setBotSel] = useState(false);
-	const [outterSel, setOutterSel] = useState(false);
-// 
-const handleBoolean = (e) => {
-	setUpperSel(!upperSel);
-	console.log(upperSel);
-};
-const handleBoolean1 = (e) => {
-	setBotSel(!botSel);
-	console.log(botSel);
-};
-const handleBoolean2 = (e) => {
-	setOutterSel(!outterSel);
-	console.log(outterSel);
-};
-	const handleMainCategoryClick = (category) => {
-		setMainCategory(category);
-		setSubCategory('');
+	const handleSetALL = () => {
+		setSubCategory("ALL")
 	};
 
-	const handleSubCategoryClick = (subCategory) => {
-		setSubCategory(subCategory);
-		console.log(`필터 : ${mainCategory} - ${subCategory}`)
-	}
-	return (
-		<div className='mt-20 bg-white'>
-			<div className='flex flex-col'>
-				{/* {Object.keys(categories).map(category => ( */}
-					{outterSel 
-					// ? 뒤는 참일때 : 뒤는 폴스일떄 
-					? <div> <button onClick={() => handleMainCategoryClick(handleBoolean2)} className='border p-2 m-1 w-32'>아우터</button> 
-					<p>JP: '점퍼'</p>
-					<p>JK: '자켓'</p>
-					<p>CT: '코트'</p>
-					<p>VT: '베스트'</p>
-					<p>CD: '가디건'</p>					
-					</div>
-						
-					:<div> <button onClick={() => handleMainCategoryClick(handleBoolean2)} className='border p-2 m-1 w-32'>아우터</button></div>
-					}
-					
-					<button onClick={() => handleMainCategoryClick(handleBoolean)} className='border p-2 m-1 w-32'>상의</button>
-					<button onClick={() => handleMainCategoryClick(handleBoolean1)} className='border p-2 m-1 w-32'>하의</button>
-				{/* ))} */}
-			</div>
-			
-			{mainCategory && (
-				<div className='flex flex-col '>
-					{categories[mainCategory].map(subCategory => (
-						<button key={subCategory} onClick={() => handleSubCategoryClick(subCategory)} className='border p-2 m-1 w-32'>{subCategory}</button>
-					))}
-				</div>
-			)}
-		</div>
-	)
+  return (
+    <div className="mt-20 bg-white">
+      <div className="flex flex-col">
+				<button className='border-b border-black p-2 m-1 mb-2 w-32 font-bold' onClick={handleSetALL}>전체</button>
+        {Object.keys(categories).map((category) => (
+          <div key={category}>
+            <button
+              onClick={() => handleMainCategoryClick(category)}
+              className="border p-2 m-1 w-32"
+            >
+              {category}
+            </button>
+            {isOpen && mainCategory === category && (
+              <div className="flex flex-col">
+                {Object.entries(categories[category]).map(([code, subCategory]) => (
+                  <button
+                    key={code}
+                    onClick={() => handleSubCategoryClick(code)}
+                    className="p-2 m-1 w-32"
+                  >
+                    {subCategory}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
+

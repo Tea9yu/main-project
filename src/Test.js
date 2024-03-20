@@ -14,6 +14,7 @@ export default function Test() {
       };
       return (
         <>
+        
         <div className="flex flex-col m-10 border bg-slate-500"><p>test</p>
         <Slider {...settings}  className="slider-container border h-96 text-white">
           <div>
