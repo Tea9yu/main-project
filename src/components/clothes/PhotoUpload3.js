@@ -1,9 +1,13 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import Test2 from '../../Test2';
 
 const ImageUpload = () => {
 	const [selectedFile, setSelectedFile] = useState(null);
 	const [preview, setPreview] = useState(null);
 	const [fileName, setFileName] = useState('');	// 파일 이름을 저장할 상태를 추가합니다.
+	const [dataA, setDataA] = useState();
+	const [uploadSuccess, setUploadSuccess] = useState(false);
+
 
 	const fileInput = useRef();	// 파일 입력 요소를 참조할 ref를 생성합니다.
 
@@ -71,38 +75,56 @@ const ImageUpload = () => {
 				},
 				method: 'POST',
 				body: formData,
+			})
+			.then(res => res.json())
+			.then(res => {				
+				setDataA(res);					
+				alert('업로드 성공');
+				setUploadSuccess(true);	// 업로드 성공 시 상태 변경
 			});
+		// 	if (response.ok) {
+		// 		const res = await response.json();
+		// 		setDataA(res);                  
+		// 		alert('업로드 성공');
+		// 		setUploadSuccess(true);
+		// } else {
+		// 		throw new Error('Network response was not ok');
+		// }
 
-			if (!response.ok) {
-				throw new Error('Network response was not ok');
-			}
-
-			const data = response.text();
-			console.log('업로드 성공:', data);
-			alert('업로드 성공');
+			// if (!response.ok) {
+			// 	throw new Error('Network response was not ok');
+			// }
+			
 		} catch (error) {
 			console.error('업로드 실패:', error);
 			alert('업로드 실패');
 		}
 	};
+	useEffect(() => {
+		console.log('dataA', dataA); 		
+	}, [dataA])
 
 	return (
-		<div className='flex justify-center mt-10 bg-white'>
-      <div className='m-10'>
+		<div className='flex justify-center mt-10 bg-white h-full min-w-[1050px]'>
+      <div className='m-10 '>
         <div style={{ border: `4px dashed ${selectedFile ? 'green' : 'grey'}`, borderRadius: '30px', padding: '10px', width: '500px', height: '600px' }} 
 					onDragOver={handleDragOver}
 					onDrop={handleDrop}
 				>
           {preview && <img src={preview} alt='Preview' style={{ width: '100%', height: '100%', borderRadius: '20px' }} />}
         </div>
-        <div className='mt-5 flex gap-5 items-center border p-2 rounded-2xl'>
+        <div className='mt-5 flex gap-5 items-center border p-2 rounded-2xl' style={{ width: '500px'}}>
           <input type="file" onChange={handleFileChange} ref={fileInput} style={{ display: 'none' }} /> {/* 파일 입력 요소를 숨깁니다 */}
           <button onClick={() => fileInput.current.click()} className='border rounded-3xl bg-red-400 text-white p-2'>파일 첨부</button> {/* 사용자 정의 버튼을 추가합니다 */}
           {fileName && <p>선택된 파일: {fileName}</p>} {/* 선택한 파일의 이름을 표시합니다 */}
         </div>
-        <div className='flex justify-center'>
-          <button onClick={handleUpload} className='w-full rounded-3xl mt-10 border p-4'>업로드</button>
+        <div className=''>
+          <button onClick={handleUpload} className='w-full rounded-3xl mt-10 border p-4' style={{ width: '500px'}} >업로드</button>
         </div>
+		<div>
+			{uploadSuccess && <Test2 />}
+			{/* <Test2 /> */}
+		</div>
       </div>
     </div>
 	);

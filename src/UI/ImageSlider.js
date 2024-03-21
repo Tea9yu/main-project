@@ -11,7 +11,7 @@ const ImageSlider = () => {
   const settings = {
     dots: true,
     infinite: true,
-    slidesToShow: 1,
+    slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
@@ -29,6 +29,27 @@ const ImageSlider = () => {
         <div>
            <img src={img2} className="w-4/5 mx-auto h-96" />
         </div>
+        <div>
+           <img src={img3} className="w-4/5 mx-auto h-96" />
+        </div>        
+        <div>
+           <img src={img3} className="w-4/5 mx-auto h-96" />
+        </div>        
+        <div>
+           <img src={img3} className="w-4/5 mx-auto h-96" />
+        </div>        
+        <div>
+           <img src={img3} className="w-4/5 mx-auto h-96" />
+        </div>        
+        <div>
+           <img src={img3} className="w-4/5 mx-auto h-96" />
+        </div>        
+        <div>
+           <img src={img3} className="w-4/5 mx-auto h-96" />
+        </div>        
+        <div>
+           <img src={img3} className="w-4/5 mx-auto h-96" />
+        </div>        
         <div>
            <img src={img3} className="w-4/5 mx-auto h-96" />
         </div>        

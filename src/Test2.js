@@ -89,8 +89,19 @@ const response = {
 }
 
 export default function PhotoResultUI() {
+  const category = {
+    아우터: { JP: '점퍼', JK: '자켓', CT: '코트', VT: '베스트', CA: '가디건' },
+    상의: { TS: '티셔츠', TN: '티셔츠나시', KT: '니트', KN: '니트나시', BL: '블라우스', WS: '남방', BN: '블라우스나시', OP: '원피스' },
+    하의: { PT: '바지', DP: '데님', SK: '스커트', LG: '레깅스' },
+    세트: { ST: '세트' },
+  };
+
   const [similar, setSimilar] = useState(response.upper.similar);
 	const [recommend, setRecommend] = useState(response.upper.recommend);
+  const [data, setData] = useState([]);
+
+ 
+   
 
 	// useEffect(() => {
 	// 	// 서버에서 추천 상품 및 이미지 데이터를 받아옵니다.
@@ -113,8 +124,42 @@ export default function PhotoResultUI() {
 	// 	}
 	// } 
 
+  const [selectedCategory, setSelectedCategory] = useState(''); // 선택된 카테고리 상태 추가
+
+  useEffect(() => {
+    console.log('선택된 카테고리:', selectedCategory);
+  }, [selectedCategory]);
+
+  // 카테고리 선택 이벤트 핸들러
+  const handleCategorySelect = (category) => {
+    // console.log('selectedCategory',selectedCategory)
+    setSelectedCategory(category);
+    
+  };
+
 	return (
 		<div className="mt-20 bg-white">
+      <div className="flex gap-4 mb-4">
+        <button onClick={() => handleCategorySelect('상의')} className={`border px-4 py-2 rounded-lg ${selectedCategory === '상의' ? 'bg-gray-200' : ''}`}>상의</button>
+        <button onClick={() => handleCategorySelect('치마')} className={`border px-4 py-2 rounded-lg ${selectedCategory === '치마' ? 'bg-gray-200' : ''}`}>치마</button>
+        <button onClick={() => handleCategorySelect('바지')} className={`border px-4 py-2 rounded-lg ${selectedCategory === '바지' ? 'bg-gray-200' : ''}`}>바지</button>
+        <button onClick={() => handleCategorySelect('드레스')} className={`border px-4 py-2 rounded-lg ${selectedCategory === '드레스' ? 'bg-gray-200' : ''}`}>드레스</button>
+      </div>
+      {/* 선택된 카테고리에 따라 상품 표시 */}
+      <div className='grid xl:grid-cols-5 lg:grid-cols-5 grid-cols-5 gap-4 min-w-[900px]'>
+        {recommend.map((recommendItem) => (
+          // 카테고리에 따라 선택된 상품만 표시
+          recommendItem.kindId === selectedCategory && (
+            <div key={recommendItem.productCode} className='border rounded-lg p-4 m-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 flex-grow-0 flex-shrink-0'
+              style={{ width: '200px', minWidth: '200px', flex: ' 1 0 auto' }}
+            >
+              <img src={`${process.env.PUBLIC_URL}/recommend_images/${recommendItem.productCode}.jpg`} alt={recommendItem.name} className='w-full h-48 object-cover' />
+              <h2>{recommendItem.name}</h2>
+              <p>{parseInt(recommendItem.price).toLocaleString('ko-KR')}원</p>
+            </div>
+          )
+        ))}
+      </div>
       <h1>Similar Products</h1>
       {/* 추천된 상품 리스트와 이미지를 표시합니다. */}
       <div className='grid xl:grid-cols-5 lg:grid-cols-5 grid-cols-5 gap-4 min-w-[900px]'>
@@ -122,7 +167,7 @@ export default function PhotoResultUI() {
           <div key={similarItem.productCode} className='border rounded-lg p-4 m-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 flex-grow-0 flex-shrink-0'
           style={{width: '200px', minWidth: '200px', flex: ' 1 0 auto'}}
           >
-            <img src={`${process.env.PUBLIC_URL}/recommend_images/${similarItem.productCode}.jpg`} alt={similarItem.name} />
+            <img src={`${process.env.PUBLIC_URL}/recommend_images/${similarItem.productCode}.jpg`} alt={similarItem.name} className='w-full h-48 object-cover'/>
             <h2>{similarItem.name}</h2>
             <p>{parseInt(similarItem.price).toLocaleString('ko-KR')}원</p>
           </div>
@@ -130,12 +175,37 @@ export default function PhotoResultUI() {
       </div>
       <h1>Recommended Products</h1>
       {/* 추천된 상품 리스트와 이미지를 표시합니다. */}
+      <h2 className='font-bold'>아우터</h2>
       <div className='grid xl:grid-cols-5 lg:grid-cols-5 grid-cols-5 gap-4 min-w-[900px]'>
         {recommend.map((recommendItem) => (
-          <div key={recommendItem.productCode} className='border'
+          <div key={recommendItem.productCode} className='border rounded-lg p-4 m-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 flex-grow-0 flex-shrink-0'
           style={{width: '200px', minWidth: '200px', flex: ' 1 0 auto'}}
           >
-            <img src={`${process.env.PUBLIC_URL}/recommend_images/${recommendItem.productCode}.jpg`} alt={recommendItem.name} />
+            <img src={`${process.env.PUBLIC_URL}/recommend_images/${recommendItem.productCode}.jpg`} alt={recommendItem.name} className='w-full h-48 object-cover' />
+            <h2>{recommendItem.name}</h2>
+            <p>{parseInt(recommendItem.price).toLocaleString('ko-KR')}원</p>
+          </div>
+        ))}
+      </div>
+      <h2 className='font-bold'>상의</h2>
+      <div className='grid xl:grid-cols-5 lg:grid-cols-5 grid-cols-5 gap-4 min-w-[900px]'>
+        {recommend.map((recommendItem) => (
+          <div key={recommendItem.productCode} className='border rounded-lg p-4 m-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 flex-grow-0 flex-shrink-0'
+          style={{width: '200px', minWidth: '200px', flex: ' 1 0 auto'}}
+          >
+            <img src={`${process.env.PUBLIC_URL}/recommend_images/${recommendItem.productCode}.jpg`} alt={recommendItem.name} className='w-full h-48 object-cover' />
+            <h2>{recommendItem.name}</h2>
+            <p>{parseInt(recommendItem.price).toLocaleString('ko-KR')}원</p>
+          </div>
+        ))}
+      </div>
+      <h2 className='font-bold'>하의</h2>
+      <div className='grid xl:grid-cols-5 lg:grid-cols-5 grid-cols-5 gap-4 min-w-[900px]'>
+        {recommend.map((recommendItem) => (
+          <div key={recommendItem.productCode} className='border rounded-lg p-4 m-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 flex-grow-0 flex-shrink-0'
+          style={{width: '200px', minWidth: '200px', flex: ' 1 0 auto'}}
+          >
+            <img src={`${process.env.PUBLIC_URL}/recommend_images/${recommendItem.productCode}.jpg`} alt={recommendItem.name} className='w-full h-48 object-cover' />
             <h2>{recommendItem.name}</h2>
             <p>{parseInt(recommendItem.price).toLocaleString('ko-KR')}원</p>
           </div>
