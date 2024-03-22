@@ -86,6 +86,7 @@ export default function ClothesInfo() {
 		// 서버에 GET 요청을 보내고 응답을 처리합니다.
 		fetch(url)
 			.then(response => {
+        console.log('response',response);
 				// 서버 응답이 성공인지 확인합니다.
 				if (!response.ok) {
 					// 응답이 실패한 경우 오류를 throw 합니다.

@@ -1,13 +1,13 @@
 import axios from "axios";
 import { useRef, useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
-import { stLogin } from "./StAtom";
 import { useRecoilState } from "recoil";
+import { LoginStAtom } from "./LoginStAtom";
 
 
 
 export default function LogForm() {
-  const [isLogin, setIsLogin] = useRecoilState(stLogin);
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState(LoginStAtom);
   const navigate = useNavigate();
 
   const loginId = useRef();
@@ -33,7 +33,7 @@ export default function LogForm() {
       });
       console.log('응답', response);
       alert("로그인 성공");
-      setIsLogin(true);
+      setIsLoggedIn(true);
       localStorage.setItem('token', response.headers.authorization); // 토큰을 localStorage에 저장
       // window.location.reload(); // 로그인 성공 시 페이지 새로고침
     } catch (error) {
