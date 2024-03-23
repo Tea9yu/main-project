@@ -15,7 +15,7 @@ export default function ClothesInfo() {
   const [itemsCountPerPage, setItemsCountPerPage] = useState([]);
   // const [clothesTag, setClothesTag] = useState([]);
   const [page, setPage] = useState(1);
-  const [totalNum, setTotalNum] = useState(13957);
+  const [totalNum, setTotalNum] = useState();
 
   const [booleanState, setBooleanState] = useState(false);
 

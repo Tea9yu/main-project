@@ -1,7 +1,30 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { LoginStAtom } from "../components/member/LoginStAtom";
 
 
 export default function Nav() {
+
+	const [user, setUser] = useState(false);
+	// // const [isLoggedIn, setIsLoggedIn] = useRecoilState(LoginStAtom);
+	// if (localStorage.getItem("token") !== null) {
+	// 	setUser(true);
+	// }
+	const [isLoggedIn, setIsLoggedIn] = useRecoilState(LoginStAtom);
+
+	useEffect(() => {
+		// 컴포넌트가 마운트될 때만 실행되도록 이펙트를 설정합니다.
+		if (localStorage.getItem("token") !== null) {
+			setUser(true);
+			// window.location.reload();
+			
+		}
+	}, []); // 빈 배열을 두 번째 매개변수로 전달하여 컴포넌트가 마운트될 때만 실행되도록 합니다.
+
+
+
+	
 	return (
 		<div className="bg-black flex justify-center items-center gap-4 fixed top-0 w-full z-10 min-w-[1050px]">
 			<nav className="border-gray-200 py-2.5 dark:bg-gray-900">
@@ -27,8 +50,8 @@ export default function Nav() {
 										className="block py-2 pl-3 pr-4 text-white  border-gray-100 hover:bg-pink-500 rounded dark:text-gray-400  dark:hover:bg-gray-700 dark:hover:text-white  dark:border-gray-700">의류</Link>
 								</li>
 								<li>
-									<Link to='/login'
-										className="block py-2 pl-3 pr-4 text-white  border-gray-100 hover:bg-pink-500 rounded dark:text-gray-400  dark:hover:bg-gray-700 dark:hover:text-white  dark:border-gray-700">로그인</Link>
+									{ user ? <Link to='/mypage' className="block py-2 pl-3 pr-4 text-white  border-gray-100 hover:bg-pink-500 rounded dark:text-gray-400  dark:hover:bg-gray-700 dark:hover:text-white  dark:border-gray-700">myPage</Link>
+									: <Link to='/login'className="block py-2 pl-3 pr-4 text-white  border-gray-100 hover:bg-pink-500 rounded dark:text-gray-400  dark:hover:bg-gray-700 dark:hover:text-white  dark:border-gray-700">로그인</Link> }
 								</li>
 							</ul>
 						</div>

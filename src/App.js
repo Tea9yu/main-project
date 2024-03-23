@@ -13,6 +13,8 @@ import ClothesInfo from './components/clothes/ClothesInfo';
 import Test from './Test2';
 import CategorySelector from './components/clothes/CategorySelector';
 import ClothesFilter from './components/clothes/ClothesFilter';
+import Mypage from './components/member/Mypage';
+
 
 
 function App() {
@@ -32,6 +34,7 @@ function App() {
             <Route path='/join' element={<Join />} />
             <Route path='/upload' element={<UploadPhotoPage />} />
             <Route path='/clothes' element={<ClothesInfo />} />
+            <Route path='/mypage' element={<Mypage />} />
             {/* <Route path='/food' element={<BusanFoodInfo />} />
             <Route path='/list' element={<BoardList2 />} />            
             <Route path='/view/:seq' element={<BoardDetail />} />
