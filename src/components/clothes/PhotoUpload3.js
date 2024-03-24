@@ -11,9 +11,12 @@ const ImageUpload = () => {
 	const [dataA, setDataA] = useState();
 	const [uploadSuccess, setUploadSuccess] = useState(false);
 	const isLoggedIn = localStorage.getItem("token");
+	const [ishandling, setIshandling] = useState(false);
 
 
 	const fileInput = useRef();	// 파일 입력 요소를 참조할 ref를 생성합니다.
+
+
 
 	const handleFileChange = (event) => {
 		const file = event.target.files[0];
@@ -68,7 +71,10 @@ const ImageUpload = () => {
         handleFileChange({target: {files: [file]}});
     };
 
-	const handleUpload = () => {
+	const handleUpload = async (e) => {
+		e.preventDefault();
+		setIshandling(true);
+
 		// 파일을 첨부하지 않은 경우에는 경고 메세지를 띄우고 함수를 종료합니다.
 		if (!selectedFile) {
 			alert('사진을 첨부해주세요.');
@@ -120,6 +126,7 @@ const ImageUpload = () => {
 			}
 			)
 			.catch(err=>console.log("err",err))
+			setIshandling(false);
 		// 	if (response.ok) {
 		// 		const res = await response.json();
 		// 		setDataA(res);
@@ -137,6 +144,7 @@ const ImageUpload = () => {
 		// 	console.error('업로드 실패:', error);
 		// 	alert('업로드 실패');
 		// }
+		
 	};
 	useEffect(() => {
 		console.log('dataA', dataA); 		
@@ -162,7 +170,7 @@ const ImageUpload = () => {
           {fileName && <p>선택된 파일: {fileName}</p>} {/* 선택한 파일의 이름을 표시합니다 */}
         </div>
         <div className=''>
-          <button onClick={handleUpload} className='w-full rounded-3xl mt-10 border p-4' style={{ width: '500px'}} >업로드</button>
+          <button onClick={handleUpload} disabled={ishandling} className='w-full rounded-3xl mt-10 border p-4' style={{ width: '500px'}} >업로드</button>
         </div>
 		<div>
 			{/* {uploadSuccess && <Test2 />} */}

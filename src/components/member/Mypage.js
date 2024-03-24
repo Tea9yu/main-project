@@ -54,7 +54,9 @@ export default function Mypage(setIsLoggedIn) {
 					</div>
 				</div>
 				<div className='px-6 py-4'>
-					{item.originalFilename}
+				<img src={`http://10.125.121.184:8080/upload_image/${item.originalFilename}`} alt={item.name}
+				className='w-full h-48 object-cover'
+				/>
 				</div>
 				<div className='px-6 py-4'>
 					{item.requestDate}
