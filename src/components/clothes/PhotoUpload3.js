@@ -3,6 +3,8 @@ import Test2 from '../../Test2';
 import { LoginStAtom } from '../member/LoginStAtom';
 import { useRecoilState } from 'recoil';
 import PhotoResultPage from './PhotoResultPage';
+import Loading from '../../UI/Loading';
+import { useNavigate } from 'react-router-dom';
 
 const ImageUpload = () => {
 	const [selectedFile, setSelectedFile] = useState(null);
@@ -10,13 +12,12 @@ const ImageUpload = () => {
 	const [fileName, setFileName] = useState('');	// 파일 이름을 저장할 상태를 추가합니다.
 	const [dataA, setDataA] = useState();
 	const [uploadSuccess, setUploadSuccess] = useState(false);
+	const [loading, setLoading] = useState(false);
 	const isLoggedIn = localStorage.getItem("token");
 	const [ishandling, setIshandling] = useState(false);
-
+	const navigate = useNavigate();
 
 	const fileInput = useRef();	// 파일 입력 요소를 참조할 ref를 생성합니다.
-
-
 
 	const handleFileChange = (event) => {
 		const file = event.target.files[0];
@@ -74,19 +75,24 @@ const ImageUpload = () => {
 	const handleUpload = async (e) => {
 		e.preventDefault();
 		setIshandling(true);
+		setLoading(true);	// api 호출전에 true로 변경하여 로딩화면 띄우기
+		
 
 		// 파일을 첨부하지 않은 경우에는 경고 메세지를 띄우고 함수를 종료합니다.
 		if (!selectedFile) {
 			alert('사진을 첨부해주세요.');
+			setLoading(false);	// 파일을 첨부하지 않으면 로딩 상태를 false로 변경하여 로딩화면을 숨깁니다.
 			return;
 		}
 		
 
-		// try {
+		// try {			
+			// navigate('/loading')
 			// 로그인 상태를 확인하여 로그인되지 않은 경우 메시지를 표시하고 함수 종료
 			if (!isLoggedIn) {
 				alert('로그인 후에 이용 할 수 있습니다.');
 				window.location.replace("/login");
+				setLoading(false);	// 로그인되지 않은 경우 로딩 상태를 false로 변경하여 로딩화면을 숨깁니다.
 				return;
 			}
 			
@@ -119,14 +125,17 @@ const ImageUpload = () => {
 					return
 				}
 				let data = await res.json()
+				// navigate('/upload')
 				setDataA(data);
 				alert('업로드 성공');
 				setUploadSuccess(true);	// 업로드 성공 시 상태 변경
+				setIshandling(false);
+				setLoading(false);	// api 호출 완료 됐을 때 false 로 변경하려 로딩화면 숨김처리				
 				// console.log('res',res)
 			}
 			)
 			.catch(err=>console.log("err",err))
-			setIshandling(false);
+			
 		// 	if (response.ok) {
 		// 		const res = await response.json();
 		// 		setDataA(res);
@@ -146,6 +155,11 @@ const ImageUpload = () => {
 		// }
 		
 	};
+
+	// useEffect(() => {
+	// 	ImageUpload();
+	// }, [])
+
 	useEffect(() => {
 		console.log('dataA', dataA); 		
 	}, [dataA])
@@ -166,13 +180,21 @@ const ImageUpload = () => {
         </div>
         <div className='mt-5 flex gap-5 items-center border p-2 rounded-2xl' style={{ width: '500px'}}>
           <input type="file" onChange={handleFileChange} ref={fileInputRef} style={{ display: 'none' }} /> {/* 파일 입력 요소를 숨깁니다 */}
-          <button className='border rounded-3xl bg-red-400 text-white p-2' onClick={handleFileButtonClick}>파일 첨부</button> {/* 사용자 정의 버튼을 추가합니다 */}
+          <button className='border rounded-3xl bg-black text-white p-2' onClick={handleFileButtonClick}>파일 첨부</button> {/* 사용자 정의 버튼을 추가합니다 */}
           {fileName && <p>선택된 파일: {fileName}</p>} {/* 선택한 파일의 이름을 표시합니다 */}
         </div>
         <div className=''>
           <button onClick={handleUpload} disabled={ishandling} className='w-full rounded-3xl mt-10 border p-4' style={{ width: '500px'}} >업로드</button>
         </div>
 		<div>
+		{loading && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
+                        <Loading />
+                    </div>
+                )}
+			{/* <div>
+			{loading ? <Loading className="absolute inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50" /> : null}
+			</div> */}
 			{/* {uploadSuccess && <Test2 />} */}
 			{uploadSuccess&&dataA&&<PhotoResultPage response={dataA} />}
 		</div>

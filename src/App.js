@@ -14,6 +14,7 @@ import Test from './Test2';
 import CategorySelector from './components/clothes/CategorySelector';
 import ClothesFilter from './components/clothes/ClothesFilter';
 import Mypage from './components/member/Mypage';
+import Loading from './UI/Loading';
 
 
 
@@ -33,6 +34,7 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/join' element={<Join />} />
             <Route path='/upload' element={<UploadPhotoPage />} />
+            <Route path='/loading' element={<Loading />} />
             <Route path='/clothes' element={<ClothesInfo />} />
             <Route path='/mypage' element={<Mypage />} />
             {/* <Route path='/food' element={<BusanFoodInfo />} />

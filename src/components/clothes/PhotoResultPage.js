@@ -41,7 +41,7 @@ export default function PhotoResultPage(response) {
   // const imagePath =process.env.REACT_APP_STATIC_IMAGE;
   const imagePath = 'http://10.125.121.184:8080/product_image';
 
-  const [selectedCategory, setSelectedCategory] = useState(''); // 선택된 카테고리 상태 추가
+  const [selectedCategory, setSelectedCategory] = useState('상의'); // 선택된 카테고리 상태 추가
 
   useEffect(() => {
     console.log('선택된 카테고리:', selectedCategory);
@@ -63,7 +63,7 @@ export default function PhotoResultPage(response) {
         {resp.dress.style !== -1 && <button onClick={() => handleCategoryClick('드레스')} className={`border px-4 py-2 rounded-lg ${selectedCategory === '드레스' ? 'bg-gray-200' : ''}`}>드레스</button>}
       </div>      
       {/* 선택된 카테고리에 따라 상품 표시 */}
-      <div className='grid xl:grid-cols-5 lg:grid-cols-5 grid-cols-5 gap-4 min-w-[900px]'>
+      <div className='grid xl:grid-cols-5 lg:grid-cols-5 grid-cols-5 gap-6 min-w-[900px]'>
         {recommendData.map((recommendItem) => (
           // 카테고리에 따라 선택된 상품만 표시
           recommendItem.kindId === selectedCategory && (
@@ -80,9 +80,9 @@ export default function PhotoResultPage(response) {
       <h1>{`위 사진의 ${selectedCategory}와 어울리는 추천 상품`}</h1>
       {/* 추천된 상품 리스트와 이미지를 표시합니다. */}
       <h2 className='font-bold'>아우터</h2>
-      <div className='grid xl:grid-cols-5 lg:grid-cols-5 grid-cols-5 gap-4 min-w-[900px]'>
+      <div className='grid xl:grid-cols-5 lg:grid-cols-5 grid-cols-5 gap-6 min-w-[900px]'>
         {recommendData.map((recommendItem) => {
-          console.log('recommendItem.kind.gkingId', recommendItem.kind.gkindId);
+          // console.log('recommendItem.kind.gkingId', recommendItem.kind.gkindId);
           if (recommendItem.kind.gkindId === "OUT") {
             return (
               <div key={recommendItem.productCode} className='border rounded-lg p-4 m-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 flex-grow-0 flex-shrink-0'
@@ -100,7 +100,7 @@ export default function PhotoResultPage(response) {
         )}
       </div>
       <h2 className='font-bold'>상의</h2>
-      <div className='grid xl:grid-cols-5 lg:grid-cols-5 grid-cols-5 gap-4 min-w-[900px]'>
+      <div className='grid xl:grid-cols-5 lg:grid-cols-5 grid-cols-5 gap-6 min-w-[900px]'>
         {recommendData.map((recommendItem) => {
           if (recommendItem.kind.gkindId === "INN") {
             return (
@@ -119,7 +119,7 @@ export default function PhotoResultPage(response) {
         )}
       </div>
       <h2 className='font-bold'>하의</h2>
-      <div className='grid xl:grid-cols-5 lg:grid-cols-5 grid-cols-5 gap-4 min-w-[900px]'>
+      <div className='grid xl:grid-cols-5 lg:grid-cols-5 grid-cols-5 gap-6 min-w-[900px]'>
         {recommendData.map((recommendItem) => {
           if (recommendItem.kind.gkindId === "BOT") {
             return (
@@ -138,7 +138,7 @@ export default function PhotoResultPage(response) {
         )}
       </div>
       <h2 className='font-bold'>세트</h2>
-      <div className='grid xl:grid-cols-5 lg:grid-cols-5 grid-cols-5 gap-4 min-w-[900px]'>
+      <div className='grid xl:grid-cols-5 lg:grid-cols-5 grid-cols-5 gap-6 min-w-[900px]'>
         {recommendData.map((recommendItem) => {
           if (recommendItem.kind.gkindId === "SET") {
             return (

@@ -2,6 +2,7 @@ import { useScrollTrigger } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import Pagination from 'react-js-pagination'
 import { Navigate, useNavigate } from 'react-router-dom';
+import DateFormat from './DateFormat';
 
 export default function Mypage(setIsLoggedIn) {
 
@@ -33,7 +34,7 @@ export default function Mypage(setIsLoggedIn) {
 		console.log('data=', data);
 		setRecommendList(data.content);  // 상품 목록 업데이트
 		setItemsCountPerPage(data.length); // 페이지 상품 개수
-		setTotalNum(data.Elements);  // 전체 상품 수 업데이트
+		setTotalNum(data.totalElements);  // 전체 상품 수 업데이트
 	}
 
 	// 페이지 변경
@@ -46,11 +47,13 @@ export default function Mypage(setIsLoggedIn) {
 	// 실제 값 들어가는 부분
 
 	useEffect(() => {
-		let tag = recommendList.map((item) =>
+		if (recommendList === null) {return}
+		let tag = recommendList.map((item, index) =>
 			<div className='border flex'>
 				<div className='px-6 py-4'>
 					<div className="inline-flex justify-center items-center w-5 h-5 bg-black text-white rounded-md mx-2">
-						{item.customerNum}
+						{/* {item.customerNum} */}
+						{(totalNum+1) - (index+1+(page-1)*10)}
 					</div>
 				</div>
 				<div className='px-6 py-4'>
@@ -59,7 +62,7 @@ export default function Mypage(setIsLoggedIn) {
 				/>
 				</div>
 				<div className='px-6 py-4'>
-					{item.requestDate}
+					<DateFormat requestDate = {item.requestDate} />
 				</div>
 			</div>
 		)

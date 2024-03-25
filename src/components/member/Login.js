@@ -109,7 +109,7 @@ export default function LogForm() {
               </div>
 
               <div>
-                <button onClick={handleSubmit} type="submit" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Login</button>
+                <button onClick={handleSubmit} type="submit" className="flex w-full justify-center rounded-md bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Login</button>
               </div>
               {/* <div>
                 <button href="http://10.125.121.184:8080/oauth2/authorization/google" type="submit" className="flex w-full justify-center rounded-md bg-slate-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-slate-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-500">구글Login</button>
@@ -124,7 +124,7 @@ export default function LogForm() {
 
             <p className="mt-10 text-center text-sm text-gray-500">
               {/* Not a member? */}
-              <Link to='/join'><a className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">회원가입</a></Link>
+              <Link to='/join'><a className="font-semibold leading-6 text-black hover:text-indigo-500">회원가입</a></Link>
             </p>
           </div>
         </div>
