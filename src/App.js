@@ -15,6 +15,10 @@ import CategorySelector from './components/clothes/CategorySelector';
 import ClothesFilter from './components/clothes/ClothesFilter';
 import Mypage from './components/member/Mypage';
 import Loading from './UI/Loading';
+import BarChart from './UI/BarChart';
+import AdminPage from './components/member/AdminPage';
+
+
 
 
 
@@ -22,11 +26,10 @@ function App() {
   return (
     <BrowserRouter>
       <RecoilRoot>
-        <div className='w-full bg-black'>
+        <div className='w-full'>
           <div>
             <Nav />
           </div>
-
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/test' element={<Test />} />
@@ -34,9 +37,10 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/join' element={<Join />} />
             <Route path='/upload' element={<UploadPhotoPage />} />
-            <Route path='/loading' element={<Loading />} />
+            <Route path='/loading' element={<Loading />} />            
             <Route path='/clothes' element={<ClothesInfo />} />
             <Route path='/mypage' element={<Mypage />} />
+            <Route path='/admin' element={<AdminPage />} />
             {/* <Route path='/food' element={<BusanFoodInfo />} />
             <Route path='/list' element={<BoardList2 />} />            
             <Route path='/view/:seq' element={<BoardDetail />} />

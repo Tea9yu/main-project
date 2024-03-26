@@ -1,551 +1,342 @@
 import React, { useEffect, useState } from 'react'
 import PhotoResultPage from './components/clothes/PhotoResultPage'
+import BarChart from './UI/BarChart'
 
 export default function Test2() {
   const res = {
     'upper': {
-      'percentage': 0.0,
-      'style': -1,
+      'percentage': 35.0,
+      'style': 10,
       'season': '봄',
       'kindId': '',
-      'similar': [{
-        "productCode": "ADC3WS001",
-        "name": "S/T프릴NB",
-        "kindId": "TS",
-        "price": 20700,
-        "month": 1
-      },
-      {
-        "productCode": "ADK1JK001",
-        "name": "S/T프릴NB",
-        "kindId": "JK",
-        "price": 21700,
-        "month": 2
-      },
-      {
-        "productCode": "ADK1PT005",
-        "name": "S/T프릴NB",
-        "kindId": "PT",
-        "price": 30700,
-        "month": 3
-      },
-      {
-        "productCode": "ADK3CA008",
-        "name": "S/T프릴NB",
-        "kindId": "CA",
-        "price": 199000,
-        "month": 4
-      },
-      {
-        "productCode": "ADK8JP003",
-        "name": "S/T프릴NB",
-        "kindId": "JP",
-        "price": 279000,
-        "month": 5
-      }, 
-       
-      ],
       'recommend': [{
         "productCode": "ADC3WS001",
         "name": "S/T프릴NB",
-        "kindId": "TS",
         "price": 20700,
-        "month": 1
-      }, 
+        "month": 1,
+        "category": {
+          "categoryId": "A",
+          "categoryName": "의류"
+        },
+        "kind": {
+          "kindId": "WS",
+          "kindName": "남방",
+          "gkindId": "INN"
+        }
+      },
       {
-        "productCode": "ADK1JK001",
+        "productCode": "ADC3WS001",
         "name": "S/T프릴NB",
-        "kindId": "JK",
-        "price": 21700,
-        "month": 2
-      }, 
+        "price": 20700,
+        "month": 1,
+        "category": {
+          "categoryId": "A",
+          "categoryName": "의류"
+        },
+        "kind": {
+          "kindId": "WS",
+          "kindName": "남방",
+          "gkindId": "INN"
+        }
+      },
       {
-        "productCode": "ADK1PT005",
+        "productCode": "ADC3WS001",
         "name": "S/T프릴NB",
-        "kindId": "PT",
-        "price": 30700,
-        "month": 3
-      }, 
+        "price": 20700,
+        "month": 1,
+        "category": {
+          "categoryId": "A",
+          "categoryName": "의류"
+        },
+        "kind": {
+          "kindId": "WS",
+          "kindName": "남방",
+          "gkindId": "INN"
+        }
+      },
       {
-        "productCode": "ADK3CA008",
+        "productCode": "ADC3WS001",
         "name": "S/T프릴NB",
-        "kindId": "CA",
-        "price": 199000,
-        "month": 4
-      }, 
+        "price": 20700,
+        "month": 1,
+        "category": {
+          "categoryId": "A",
+          "categoryName": "의류"
+        },
+        "kind": {
+          "kindId": "WS",
+          "kindName": "남방",
+          "gkindId": "INN"
+        }
+      },
       {
-        "productCode": "ADK8JP003",
+        "productCode": "ADC3WS001",
         "name": "S/T프릴NB",
-        "kindId": "JP",
-        "price": 279000,
-        "month": 5
-      }, 
+        "price": 20700,
+        "month": 1,
+        "category": {
+          "categoryId": "A",
+          "categoryName": "의류"
+        },
+        "kind": {
+          "kindId": "WS",
+          "kindName": "남방",
+          "gkindId": "INN"
+        }
+      },
       ],
     },
     'skirt': {
-      'percentage': 0.0,
-      'style': -1,
+      'percentage': 25.0,
+      'style': 8,
       'season': '봄',
       'kindId': '',
-      'similar': [{
-        "productCode": "ADC3WS001",
-        "name": "S/T프릴NB",
-        "kindId": "TS",
-        "price": 20700,
-        "month": 1
-      },
-      {
-        "productCode": "ADK1JK001",
-        "name": "S/T프릴NB",
-        "kindId": "JK",
-        "price": 21700,
-        "month": 2
-      },
-      {
-        "productCode": "ADK1PT005",
-        "name": "S/T프릴NB",
-        "kindId": "PT",
-        "price": 30700,
-        "month": 3
-      },
-      {
-        "productCode": "ADK3CA008",
-        "name": "S/T프릴NB",
-        "kindId": "CA",
-        "price": 199000,
-        "month": 4
-      },
-      {
-        "productCode": "ADK8JP003",
-        "name": "S/T프릴NB",
-        "kindId": "JP",
-        "price": 279000,
-        "month": 5
-      }, 
-       
-      ],
       'recommend': [{
         "productCode": "ADC3WS001",
         "name": "S/T프릴NB",
-        "kindId": "TS",
         "price": 20700,
-        "month": 1
-      }, 
-      {
-        "productCode": "ADK1JK001",
+        "month": 1,
+        "category": {
+          "categoryId": "A",
+          "categoryName": "의류"
+        },
+        "kind": {
+          "kindId": "WS",
+          "kindName": "남방",
+          "gkindId": "INN"
+        }
+      }, {
+        "productCode": "ADC3WS001",
         "name": "S/T프릴NB",
-        "kindId": "JK",
-        "price": 21700,
-        "month": 2
-      }, 
-      {
-        "productCode": "ADK1PT005",
+        "price": 20700,
+        "month": 1,
+        "category": {
+          "categoryId": "A",
+          "categoryName": "의류"
+        },
+        "kind": {
+          "kindId": "WS",
+          "kindName": "남방",
+          "gkindId": "INN"
+        }
+      }, {
+        "productCode": "ADC3WS001",
         "name": "S/T프릴NB",
-        "kindId": "PT",
-        "price": 30700,
-        "month": 3
-      }, 
-      {
-        "productCode": "ADK3CA008",
+        "price": 20700,
+        "month": 1,
+        "category": {
+          "categoryId": "A",
+          "categoryName": "의류"
+        },
+        "kind": {
+          "kindId": "WS",
+          "kindName": "남방",
+          "gkindId": "INN"
+        }
+      }, {
+        "productCode": "ADC3WS001",
         "name": "S/T프릴NB",
-        "kindId": "CA",
-        "price": 199000,
-        "month": 4
-      }, 
-      {
-        "productCode": "ADK8JP003",
+        "price": 20700,
+        "month": 1,
+        "category": {
+          "categoryId": "A",
+          "categoryName": "의류"
+        },
+        "kind": {
+          "kindId": "WS",
+          "kindName": "남방",
+          "gkindId": "INN"
+        }
+      }, {
+        "productCode": "ADC3WS001",
         "name": "S/T프릴NB",
-        "kindId": "JP",
-        "price": 279000,
-        "month": 5
-      }, 
+        "price": 20700,
+        "month": 1,
+        "category": {
+          "categoryId": "A",
+          "categoryName": "의류"
+        },
+        "kind": {
+          "kindId": "WS",
+          "kindName": "남방",
+          "gkindId": "INN"
+        }
+      },
       ],
     },
     'pants': {
-      'percentage': 0.0,
-      'style': -1,
+      'percentage': 20.0,
+      'style': 9,
       'season': '봄',
       'kindId': '',
-      'similar': [{
-        "productCode": "ADC3WS001",
-        "name": "S/T프릴NB",
-        "kindId": "TS",
-        "price": 20700,
-        "month": 1
-      },
-      {
-        "productCode": "ADK1JK001",
-        "name": "S/T프릴NB",
-        "kindId": "JK",
-        "price": 21700,
-        "month": 2
-      },
-      {
-        "productCode": "ADK1PT005",
-        "name": "S/T프릴NB",
-        "kindId": "PT",
-        "price": 30700,
-        "month": 3
-      },
-      {
-        "productCode": "ADK3CA008",
-        "name": "S/T프릴NB",
-        "kindId": "CA",
-        "price": 199000,
-        "month": 4
-      },
-      {
-        "productCode": "ADK8JP003",
-        "name": "S/T프릴NB",
-        "kindId": "JP",
-        "price": 279000,
-        "month": 5
-      }, 
-       
-      ],
       'recommend': [{
         "productCode": "ADC3WS001",
         "name": "S/T프릴NB",
-        "kindId": "TS",
         "price": 20700,
-        "month": 1
-      }, 
-      {
-        "productCode": "ADK1JK001",
+        "month": 1,
+        "category": {
+          "categoryId": "A",
+          "categoryName": "의류"
+        },
+        "kind": {
+          "kindId": "WS",
+          "kindName": "남방",
+          "gkindId": "INN"
+        }
+      }, {
+        "productCode": "ADC3WS001",
         "name": "S/T프릴NB",
-        "kindId": "JK",
-        "price": 21700,
-        "month": 2
-      }, 
-      {
-        "productCode": "ADK1PT005",
+        "price": 20700,
+        "month": 1,
+        "category": {
+          "categoryId": "A",
+          "categoryName": "의류"
+        },
+        "kind": {
+          "kindId": "WS",
+          "kindName": "남방",
+          "gkindId": "INN"
+        }
+      }, {
+        "productCode": "ADC3WS001",
         "name": "S/T프릴NB",
-        "kindId": "PT",
-        "price": 30700,
-        "month": 3
-      }, 
-      {
-        "productCode": "ADK3CA008",
+        "price": 20700,
+        "month": 1,
+        "category": {
+          "categoryId": "A",
+          "categoryName": "의류"
+        },
+        "kind": {
+          "kindId": "WS",
+          "kindName": "남방",
+          "gkindId": "INN"
+        }
+      }, {
+        "productCode": "ADC3WS001",
         "name": "S/T프릴NB",
-        "kindId": "CA",
-        "price": 199000,
-        "month": 4
-      }, 
-      {
-        "productCode": "ADK8JP003",
+        "price": 20700,
+        "month": 1,
+        "category": {
+          "categoryId": "A",
+          "categoryName": "의류"
+        },
+        "kind": {
+          "kindId": "WS",
+          "kindName": "남방",
+          "gkindId": "INN"
+        }
+      }, {
+        "productCode": "ADC3WS001",
         "name": "S/T프릴NB",
-        "kindId": "JP",
-        "price": 279000,
-        "month": 5
-      }, 
+        "price": 20700,
+        "month": 1,
+        "category": {
+          "categoryId": "A",
+          "categoryName": "의류"
+        },
+        "kind": {
+          "kindId": "WS",
+          "kindName": "남방",
+          "gkindId": "INN"
+        }
+      },
       ],
     },
     'dress': {
-      // 'percentage': 0.0,
-      // 'style': -1,
-      // 'season': '봄',
-      // 'kindId': '',
-      // 'similar': [{
-      //   "productCode": "ADC3WS001",
-      //   "name": "S/T프릴NB",
-      //   "kindId": "TS",
-      //   "price": 20700,
-      //   "month": 1
-      // },
-      // {
-      //   "productCode": "ADK1JK001",
-      //   "name": "S/T프릴NB",
-      //   "kindId": "JK",
-      //   "price": 21700,
-      //   "month": 2
-      // },
-      // {
-      //   "productCode": "ADK1PT005",
-      //   "name": "S/T프릴NB",
-      //   "kindId": "PT",
-      //   "price": 30700,
-      //   "month": 3
-      // },
-      // {
-      //   "productCode": "ADK3CA008",
-      //   "name": "S/T프릴NB",
-      //   "kindId": "CA",
-      //   "price": 199000,
-      //   "month": 4
-      // },
-      // {
-      //   "productCode": "ADK8JP003",
-      //   "name": "S/T프릴NB",
-      //   "kindId": "JP",
-      //   "price": 279000,
-      //   "month": 5
-      // }, 
-       
-      // ],
-      // 'recommend': [{
-      //   "productCode": "ADC3WS001",
-      //   "name": "S/T프릴NB",
-      //   "kindId": "TS",
-      //   "price": 20700,
-      //   "month": 1
-      // }, 
-      // {
-      //   "productCode": "ADK1JK001",
-      //   "name": "S/T프릴NB",
-      //   "kindId": "JK",
-      //   "price": 21700,
-      //   "month": 2
-      // }, 
-      // {
-      //   "productCode": "ADK1PT005",
-      //   "name": "S/T프릴NB",
-      //   "kindId": "PT",
-      //   "price": 30700,
-      //   "month": 3
-      // }, 
-      // {
-      //   "productCode": "ADK3CA008",
-      //   "name": "S/T프릴NB",
-      //   "kindId": "CA",
-      //   "price": 199000,
-      //   "month": 4
-      // }, 
-      // {
-      //   "productCode": "ADK8JP003",
-      //   "name": "S/T프릴NB",
-      //   "kindId": "JP",
-      //   "price": 279000,
-      //   "month": 5
-      // }, 
-      // ],
+      'percentage': 20.0,
+      'style': 9,
+      'season': '봄',
+      'kindId': '',
+      'recommend': [{
+        "productCode": "ADC3WS001",
+        "name": "S/T프릴NB",
+        "price": 20700,
+        "month": 1,
+        "category": {
+          "categoryId": "A",
+          "categoryName": "의류"
+        },
+        "kind": {
+          "kindId": "WS",
+          "kindName": "남방",
+          "gkindId": "INN"
+        }
+      }, {
+        "productCode": "ADC3WS001",
+        "name": "S/T프릴NB",
+        "price": 20700,
+        "month": 1,
+        "category": {
+          "categoryId": "A",
+          "categoryName": "의류"
+        },
+        "kind": {
+          "kindId": "WS",
+          "kindName": "남방",
+          "gkindId": "INN"
+        }
+      }, {
+        "productCode": "ADC3WS001",
+        "name": "S/T프릴NB",
+        "price": 20700,
+        "month": 1,
+        "category": {
+          "categoryId": "A",
+          "categoryName": "의류"
+        },
+        "kind": {
+          "kindId": "WS",
+          "kindName": "남방",
+          "gkindId": "INN"
+        }
+      }, {
+        "productCode": "ADC3WS001",
+        "name": "S/T프릴NB",
+        "price": 20700,
+        "month": 1,
+        "category": {
+          "categoryId": "A",
+          "categoryName": "의류"
+        },
+        "kind": {
+          "kindId": "WS",
+          "kindName": "남방",
+          "gkindId": "INN"
+        }
+      }, {
+        "productCode": "ADC3WS001",
+        "name": "S/T프릴NB",
+        "price": 20700,
+        "month": 1,
+        "category": {
+          "categoryId": "A",
+          "categoryName": "의류"
+        },
+        "kind": {
+          "kindId": "WS",
+          "kindName": "남방",
+          "gkindId": "INN"
+        }
+      },
+      ],
     }
   }
 
-	return (
-		<div className="mt-20 bg-white">
-      <PhotoResultPage response = {res}/>
+  return (
+    <div className="mt-20 bg-white">
+      <div className='flex flex-col w-full'>
+        <div className=''>
+          사진
+        </div>
+        <div className=''>
+          {/* <BarChart response={res} /> */}
+        </div>
+      </div>
+      <div>
+        {/* <PhotoResultPage response={res} /> */}
+      </div>
     </div>
-	)
+  )
 }
 
 
-// import Slider from "react-slick";
-// import "./slider/slick.css";
-// import "./slider/slick-theme.css";
-// import PhotoResultUI from "./components/clothes/PhotoResultUI";
-
-// const response = {
-//   'upper': {
-//     'percentage': 0.0,
-//     'style': -1,
-//     'season': '봄',
-//     'kindId': '',
-//     'similar': [{
-//       "productCode": "ADC3WS001",
-//       "name": "S/T프릴NB",
-//       "kindId": "TS",
-//       "price": 20700,
-//       "month": 1
-//     },
-//     {
-//       "productCode": "ADC3WS001",
-//       "name": "S/T프릴NB",
-//       "kindId": "TS",
-//       "price": 21700,
-//       "month": 2
-//     },
-//     {
-//       "productCode": "ADC3WS001",
-//       "name": "S/T프릴NB",
-//       "kindId": "TS",
-//       "price": 30700,
-//       "month": 3
-//     },
-//     {
-//       "productCode": "ADC3WS001",
-//       "name": "S/T프릴NB",
-//       "kindId": "TS",
-//       "price": 40700,
-//       "month": 4
-//     },
-//     {
-//       "productCode": "ADC3WS001",
-//       "name": "S/T프릴NB",
-//       "kindId": "TS",
-//       "price": 20700,
-//       "month": 5
-//     }, 
-     
-//     ],
-//     'recommend': [{
-//       "productCode": "ADC3WS001",
-//       "name": "S/T프릴NB",
-//       "kindId": "TS",
-//       "price": 20700,
-//       "month": 1
-//     }, 
-//     {
-//       "productCode": "ADC3WS001",
-//       "name": "S/T프릴NB",
-//       "kindId": "TS",
-//       "price": 21700,
-//       "month": 2
-//     }, 
-//     {
-//       "productCode": "ADC3WS001",
-//       "name": "S/T프릴NB",
-//       "kindId": "TS",
-//       "price": 30700,
-//       "month": 3
-//     }, 
-//     {
-//       "productCode": "ADC3WS001",
-//       "name": "S/T프릴NB",
-//       "kindId": "TS",
-//       "price": 40700,
-//       "month": 4
-//     }, 
-//     {
-//       "productCode": "ADC3WS001",
-//       "name": "S/T프릴NB",
-//       "kindId": "TS",
-//       "price": 20700,
-//       "month": 5
-//     }, 
-//     ],
-//   },
-//   'skirt': {
-//   },
-//   'pants': {
-//   },
-//   'dress': {
-//   }
-// }
-
-
-// export default function Test() {
-
-
-//   return (
-//     <>
-
-//       <div className="mt-20 bg-white">
-//         <PhotoResultUI rec={response} />
-//         <div>
-//           {/* <pre>{JSON.stringify(response, null, 2)}</pre> */}
-//         </div>
-//       </div>
-
-//     </>
-//   );
-// }
-
-
-
-// import Slider from "react-slick";
-// import "./slider/slick.css";
-// import "./slider/slick-theme.css";
-// import PhotoResultUI from "./components/clothes/PhotoResultUI";
-
-// export default function Test() {
-//   const response = {
-//     'upper': {
-//       'percentage': 0.0,
-//       'style': -1,
-//       'season': '봄',
-//       'kindId': '',
-//       'similar': [{
-//         "productCode": "ADC3WS001",
-//         "name": "S/T프릴NB",
-//         "kindId": "TS",
-//         "price": 20700,
-//         "month": 1
-//       },
-//       {
-//         "productCode": "ADC3WS001",
-//         "name": "S/T프릴NB",
-//         "kindId": "TS",
-//         "price": 21700,
-//         "month": 2
-//       },
-//       {
-//         "productCode": "ADC3WS001",
-//         "name": "S/T프릴NB",
-//         "kindId": "TS",
-//         "price": 30700,
-//         "month": 3
-//       },
-//       {
-//         "productCode": "ADC3WS001",
-//         "name": "S/T프릴NB",
-//         "kindId": "TS",
-//         "price": 40700,
-//         "month": 4
-//       },
-//       {
-//         "productCode": "ADC3WS001",
-//         "name": "S/T프릴NB",
-//         "kindId": "TS",
-//         "price": 20700,
-//         "month": 5
-//       }, 
-       
-//       ],
-//       'recommend': [{
-//         "productCode": "ADC3WS001",
-//         "name": "S/T프릴NB",
-//         "kindId": "TS",
-//         "price": 20700,
-//         "month": 1
-//       }, 
-//       {
-//         "productCode": "ADC3WS001",
-//         "name": "S/T프릴NB",
-//         "kindId": "TS",
-//         "price": 21700,
-//         "month": 2
-//       }, 
-//       {
-//         "productCode": "ADC3WS001",
-//         "name": "S/T프릴NB",
-//         "kindId": "TS",
-//         "price": 30700,
-//         "month": 3
-//       }, 
-//       {
-//         "productCode": "ADC3WS001",
-//         "name": "S/T프릴NB",
-//         "kindId": "TS",
-//         "price": 40700,
-//         "month": 4
-//       }, 
-//       {
-//         "productCode": "ADC3WS001",
-//         "name": "S/T프릴NB",
-//         "kindId": "TS",
-//         "price": 20700,
-//         "month": 5
-//       }, 
-//       ],
-//     },
-//     'skirt': {
-//     },
-//     'pants': {
-//     },
-//     'dress': {
-//     }
-//   }
-
-//   return (
-//     <>
-
-//       <div className="mt-20 bg-white">
-//         <PhotoResultUI rec={response} />
-//         <div>
-//           {/* <pre>{JSON.stringify(response, null, 2)}</pre> */}
-//         </div>
-//       </div>
-
-//     </>
-//   );
-// }

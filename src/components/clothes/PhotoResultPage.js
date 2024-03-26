@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import BarChart from '../../UI/BarChart';
 
 export default function PhotoResultPage(response) {
 
@@ -56,6 +57,11 @@ export default function PhotoResultPage(response) {
 
   return (
     <div className="mt-20 bg-white">
+      <div className='flex gap-5'>
+      {/* <div>
+				<BarChart response={response} />
+				</div> */}
+      </div>
       <div className="flex gap-4 mb-4">
         {resp.upper.style !== -1 && <button onClick={() => handleCategoryClick('상의')} className={`border px-4 py-2 rounded-lg ${selectedCategory === '상의' ? 'bg-gray-200' : ''}`}>상의</button>}
         {resp.skirt.style !== -1 && <button onClick={() => handleCategoryClick('치마')} className={`border px-4 py-2 rounded-lg ${selectedCategory === '치마' ? 'bg-gray-200' : ''}`}>치마</button>}
@@ -64,10 +70,10 @@ export default function PhotoResultPage(response) {
       </div>      
       {/* 선택된 카테고리에 따라 상품 표시 */}
       <div className='grid xl:grid-cols-5 lg:grid-cols-5 grid-cols-5 gap-6 min-w-[900px]'>
-        {recommendData.map((recommendItem) => (
+        {recommendData.map((recommendItem, index) => (
           // 카테고리에 따라 선택된 상품만 표시
           recommendItem.kindId === selectedCategory && (
-            <div key={recommendItem.productCode} className='border rounded-lg p-4 m-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 flex-grow-0 flex-shrink-0'
+            <div key={recommendItem.productCode + index} className='border rounded-lg p-4 m-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 flex-grow-0 flex-shrink-0'
               style={{ width: '200px', minWidth: '200px', flex: ' 1 0 auto' }}
             >
               <img src={`${imagePath}/${recommendItem.productCode}.jpg`} alt={recommendItem.name} className='w-full h-48 object-cover' />
@@ -81,11 +87,11 @@ export default function PhotoResultPage(response) {
       {/* 추천된 상품 리스트와 이미지를 표시합니다. */}
       <h2 className='font-bold'>아우터</h2>
       <div className='grid xl:grid-cols-5 lg:grid-cols-5 grid-cols-5 gap-6 min-w-[900px]'>
-        {recommendData.map((recommendItem) => {
+        {recommendData.map((recommendItem, index) => {
           // console.log('recommendItem.kind.gkingId', recommendItem.kind.gkindId);
           if (recommendItem.kind.gkindId === "OUT") {
             return (
-              <div key={recommendItem.productCode} className='border rounded-lg p-4 m-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 flex-grow-0 flex-shrink-0'
+              <div key={recommendItem.productCode + index} className='border rounded-lg p-4 m-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 flex-grow-0 flex-shrink-0'
                 style={{ width: '200px', minWidth: '200px', flex: ' 1 0 auto' }}
               >
                 <img src={`${imagePath}/${recommendItem.productCode}.jpg`} alt={recommendItem.name} className='w-full h-48 object-cover' />
@@ -101,10 +107,10 @@ export default function PhotoResultPage(response) {
       </div>
       <h2 className='font-bold'>상의</h2>
       <div className='grid xl:grid-cols-5 lg:grid-cols-5 grid-cols-5 gap-6 min-w-[900px]'>
-        {recommendData.map((recommendItem) => {
+        {recommendData.map((recommendItem, index) => {
           if (recommendItem.kind.gkindId === "INN") {
             return (
-              <div key={recommendItem.productCode} className='border rounded-lg p-4 m-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 flex-grow-0 flex-shrink-0'
+              <div key={recommendItem.productCode + index} className='border rounded-lg p-4 m-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 flex-grow-0 flex-shrink-0'
                 style={{ width: '200px', minWidth: '200px', flex: ' 1 0 auto' }}
               >
                 <img src={`${imagePath}/${recommendItem.productCode}.jpg`} alt={recommendItem.name} className='w-full h-48 object-cover' />
@@ -120,10 +126,10 @@ export default function PhotoResultPage(response) {
       </div>
       <h2 className='font-bold'>하의</h2>
       <div className='grid xl:grid-cols-5 lg:grid-cols-5 grid-cols-5 gap-6 min-w-[900px]'>
-        {recommendData.map((recommendItem) => {
+        {recommendData.map((recommendItem, index) => {
           if (recommendItem.kind.gkindId === "BOT") {
             return (
-              <div key={recommendItem.productCode} className='border rounded-lg p-4 m-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 flex-grow-0 flex-shrink-0'
+              <div key={recommendItem.productCode + index} className='border rounded-lg p-4 m-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 flex-grow-0 flex-shrink-0'
                 style={{ width: '200px', minWidth: '200px', flex: ' 1 0 auto' }}
               >
                 <img src={`${imagePath}/${recommendItem.productCode}.jpg`} alt={recommendItem.name} className='w-full h-48 object-cover' />
@@ -139,10 +145,10 @@ export default function PhotoResultPage(response) {
       </div>
       <h2 className='font-bold'>세트</h2>
       <div className='grid xl:grid-cols-5 lg:grid-cols-5 grid-cols-5 gap-6 min-w-[900px]'>
-        {recommendData.map((recommendItem) => {
+        {recommendData.map((recommendItem, index) => {
           if (recommendItem.kind.gkindId === "SET") {
             return (
-              <div key={recommendItem.productCode} className='border rounded-lg p-4 m-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 flex-grow-0 flex-shrink-0'
+              <div key={recommendItem.productCode + index} className='border rounded-lg p-4 m-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 flex-grow-0 flex-shrink-0'
                 style={{ width: '200px', minWidth: '200px', flex: ' 1 0 auto' }}
               >
                 <img src={`${imagePath}/${recommendItem.productCode}.jpg`} alt={recommendItem.name} className='w-full h-48 object-cover' />

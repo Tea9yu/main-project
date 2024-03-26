@@ -5,7 +5,6 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import DateFormat from './DateFormat';
 
 export default function Mypage(setIsLoggedIn) {
-
 	const [recommendList, setRecommendList] = useState([]);
 	const [recommendTag, setRecommendTag] = useState([]);
 	const [itemsCountPerPage, setItemsCountPerPage] = useState([]);
@@ -33,7 +32,7 @@ export default function Mypage(setIsLoggedIn) {
 		if (data.content === null) { return }
 		console.log('data=', data);
 		setRecommendList(data.content);  // 상품 목록 업데이트
-		setItemsCountPerPage(data.length); // 페이지 상품 개수
+		setItemsCountPerPage(data.pageable.pagesize); // 페이지 상품 개수
 		setTotalNum(data.totalElements);  // 전체 상품 수 업데이트
 	}
 
@@ -47,22 +46,22 @@ export default function Mypage(setIsLoggedIn) {
 	// 실제 값 들어가는 부분
 
 	useEffect(() => {
-		if (recommendList === null) {return}
+		if (recommendList === null) { return }
 		let tag = recommendList.map((item, index) =>
-			<div className='border flex'>
+			<div className='border flex' key={item + index}>
 				<div className='px-6 py-4'>
 					<div className="inline-flex justify-center items-center w-5 h-5 bg-black text-white rounded-md mx-2">
 						{/* {item.customerNum} */}
-						{(totalNum+1) - (index+1+(page-1)*10)}
+						{(totalNum + 1) - (index + 1 + (page - 1) * 10)}
 					</div>
 				</div>
 				<div className='px-6 py-4'>
-				<img src={`http://10.125.121.184:8080/upload_image/${item.originalFilename}`} alt={item.name}
-				className='w-full h-48 object-cover'
-				/>
+					<img src={`http://10.125.121.184:8080/upload_image/${item.customerNum}/${item.originalFilename}`} alt={item.name}
+						className='w-full h-48 object-cover'
+					/>
 				</div>
 				<div className='px-6 py-4'>
-					<DateFormat requestDate = {item.requestDate} />
+					<DateFormat requestDate={item.requestDate} />
 				</div>
 			</div>
 		)
@@ -145,9 +144,11 @@ export default function Mypage(setIsLoggedIn) {
 				</div>
 				<Pagination
 					activePage={page}
-					itemCountPerPage={10}
-					totalItemsCount={totalNum}
+					itemCountPerPage={itemsCountPerPage}
+					totalItemsCount={totalNum || 0}
 					pageRangeDisplayed={5}
+					prevPageText={"‹"} // "이전"을 나타낼 텍스트
+					nextPageText={"›"} // "다음"을 나타낼 텍스트
 					onChange={handlePageChange}
 				/>
 			</div>
