@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Pagination from 'react-js-pagination'
 import { Navigate, useNavigate } from 'react-router-dom';
 import DateFormat from './DateFormat';
+import './mypage.css';
 
 export default function Mypage(setIsLoggedIn) {
 	const [recommendList, setRecommendList] = useState([]);
@@ -48,19 +49,19 @@ export default function Mypage(setIsLoggedIn) {
 	useEffect(() => {
 		if (recommendList === null) { return }
 		let tag = recommendList.map((item, index) =>
-			<div className='border flex' key={item + index}>
+			<div className='flex' key={item + index}>
 				<div className='px-6 py-4'>
-					<div className="inline-flex justify-center items-center w-5 h-5 bg-black text-white rounded-md mx-2">
+					<div className="inline-flex justify-center items-center w-8 h-7 bg-violet-400 text-white rounded-md mx-2">
 						{/* {item.customerNum} */}
 						{(totalNum + 1) - (index + 1 + (page - 1) * 10)}
 					</div>
 				</div>
-				<div className='px-6 py-4'>
+				<div className='px-6 py-4 mr-56'>
 					<img src={`http://10.125.121.184:8080/upload_image/${item.customerNum}/${item.originalFilename}`} alt={item.name}
 						className='w-full h-48 object-cover'
 					/>
 				</div>
-				<div className='px-6 py-4'>
+				<div className='px-6 py-4 ml-18'>
 					<DateFormat requestDate={item.requestDate} />
 				</div>
 			</div>
@@ -78,8 +79,27 @@ export default function Mypage(setIsLoggedIn) {
 	}
 
 	return (
-		<div className="w-full h-full mt-20 bg-white flex flex-col justify-center items-center">
-			<div className="w-full h-[2rem] sm:h-[2rem]">
+		<div className="pt-10 min-w-[600px] w-full h-full flex flex-col justify-center items-center">
+			<div class="w-3/5 h-[30svw]  grid grid-rows-5 grid-flow-col gap-4">
+  			<div class="row-start-1 row-span-3 ...">
+					<div className='w-full h-full min-w-32 min-h-32 border-8 border-double border-white p-3'>
+						<div className='bg-white w-full h-full'></div>
+					</div>
+				</div>
+				
+				<div class=" row-end-6 row-span-3  ...">
+				<div className='w-full h-full min-w-32 min-h-32 border-8 border-double border-white p-3'>
+						<div className='bg-white w-full h-full'></div>
+					</div>
+				</div>
+				
+				<div class="row-start-2 row-end-4 ...">
+				<div className='w-full h-full min-w-32 min-h-32 border-8 border-double border-white p-3'>
+						<button className='bg-white w-full h-full font-bold' onClick={handleLogout}>Logout</button>
+					</div>
+				</div>
+			</div>
+			<div className="w-full h-[2rem] sm:h-[2rem] flex">
 				{/* <input
 					// ref={numberRef}
 					type="text"
@@ -88,10 +108,10 @@ export default function Mypage(setIsLoggedIn) {
 				/> */}
 				{/* <button onClick={handleSearchNumber} className="text-xs sm:text-sm lg:text-base ml-2 lg:ml-[14px] sm:pt-[8px] sm:pb-[7px] sm:ml-[15px] py-2 lg:p-2 w-[3rem] sm:w-[4rem] lg:w-[5rem] text-white border-2 border-[#1D647A] bg-[#1D647A]">검색</button> */}
 			</div>
-			<div className="mt-[2rem] flex ">
-				<button className='border p-2 rounded-xl items-center' onClick={handleLogout}>로그아웃</button>
+			<div className="mt-[2rem] w-3/4 flex justify-end">
+				<button className='border p-2 rounded-xl items-end hover:bg-[]' onClick={handleLogout}>로그아웃</button>
 			</div>
-			<div className="mt-[2rem] w-full">
+			<div className="mt-[2rem] w-full flex flex-col justify-center items-center">
 
 
 				{/* <div className="flex gap-6 mx-4 bg-orange-400 justify-center">
@@ -121,7 +141,7 @@ export default function Mypage(setIsLoggedIn) {
 				{recommendTag}
 				</div> */}
 
-				<div className="relative w-3/4 shadow-md sm:rounded-lg border-4 border-black justify-center">
+				{/* <div className="relative w-3/4 shadow-md sm:rounded-lg border-4 border-black justify-center">
 					<div className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
 						<div className="border-b-4 border-black text-gray-700 uppercase  dark:bg-gray-700 dark:text-gray-400">
 							<div className='flex'>
@@ -135,13 +155,36 @@ export default function Mypage(setIsLoggedIn) {
 									날짜
 								</div>
 							</div>
-						</div>
-						{/* tbody는 데이터 본문 10줄 */}
-						{<div>
+						</div>						
+						<div>
 							{recommendTag}
-						</div>}
+						</div>
+					</div>
+				</div> */}
+
+				{/* <div className="relative w-3/4 shadow-md sm:rounded-lg border-4 border-black justify-center">
+					<div className="flex bg-gray-200 font-bold">
+						<div className="w-1/4 py-2">번호</div>
+						<div className="w-2/4 py-2">이미지명</div>
+						<div className="w-1/4 py-2">날짜</div>
+					</div>
+					<div className="mypage-body">
+						{recommendTag}
+					</div>
+				</div> */}
+
+				<div className="relative w-3/4 shadow-md  border-t-4 border-[#d4c3ed] justify-center">
+					<div className="flex  border-[#d4c3ed] border-b-4 font-bold">
+						<div className="w-1/4 py-2 ml-5">번호</div>
+						<div className="w-2/4 py-2">이미지명</div>
+						<div className="w-1/4 py-2">날짜</div>
+					</div>
+					<div className="mypage-body">
+						{recommendTag}
 					</div>
 				</div>
+
+				<div className='mb-3'>
 				<Pagination
 					activePage={page}
 					itemCountPerPage={itemsCountPerPage}
@@ -151,6 +194,7 @@ export default function Mypage(setIsLoggedIn) {
 					nextPageText={"›"} // "다음"을 나타낼 텍스트
 					onChange={handlePageChange}
 				/>
+				</div>
 			</div>
 		</div>
 	)

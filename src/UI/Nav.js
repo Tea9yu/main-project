@@ -26,7 +26,7 @@ export default function Nav() {
 
 	
 	return (
-		<div className="bg-black flex justify-center items-center gap-4 fixed top-0 w-full z-10 min-w-[1050px]">
+		<div className="bg-[#161616] flex justify-center items-center gap-4 fixed top-0 w-full z-10 min-w-[1050px]">
 			<nav className="border-gray-200 py-2.5 dark:bg-gray-900">
 				<div className="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto">
 					<div className="flex items-center">

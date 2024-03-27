@@ -24,12 +24,14 @@ import AdminPage from './components/member/AdminPage';
 
 function App() {
   return (
+    <div className='w-full min-h-screen bg-[#E5DEEC]'>
     <BrowserRouter>
       <RecoilRoot>
-        <div className='w-full'>
-          <div>
+        <div className='w-full h-full'>
+          <div className=' bg-[#E5DEEC]'>
             <Nav />
           </div>
+          <div className='pt-10'>
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/test' element={<Test />} />
@@ -46,9 +48,11 @@ function App() {
             <Route path='/view/:seq' element={<BoardDetail />} />
             <Route path='/write' element={<BoardWrite />} />            */}
           </Routes>
+          </div>
         </div>
       </RecoilRoot>
     </BrowserRouter>
+    </div>
   );
 }
 

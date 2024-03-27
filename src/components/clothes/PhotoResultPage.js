@@ -56,7 +56,7 @@ export default function PhotoResultPage(response) {
   };
 
   return (
-    <div className="mt-20 bg-white">
+    <div className="mt-20 ">
       <div className='flex gap-5'>
       {/* <div>
 				<BarChart response={response} />

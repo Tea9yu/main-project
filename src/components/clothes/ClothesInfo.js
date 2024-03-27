@@ -111,7 +111,7 @@ export default function ClothesInfo() {
 	};
 
   return (
-    <div className='bg-white flex'>
+    <div className='flex'>
       <div className='p-4 border-r h-screen fixed left-0 min-w-[250px] max-w-[250px]'>
         <h2 className='font-bold mb-4 mt-16'>Categories</h2>
         <ClothesFilter setSubCategory={setSelectedCategory} setPageInit={setPage} />
@@ -157,7 +157,7 @@ export default function ClothesInfo() {
           <Pagination
             activePage={page}   // 현재 페이지
             itemsCountPerPage={itemsCountPerPage}  // 한 페이지에 보여줄 아이템 갯수
-            totalItemsCount={totalNum || 0}  // 총 아이템 갯수
+            totalItemsCount={totalNum}  // 총 아이템 갯수
             pageRangeDisplayed={10}  // paginator의 페이지 범위
             prevPageText={"‹"} // "이전"을 나타낼 텍스트
             nextPageText={"›"} // "다음"을 나타낼 텍스트

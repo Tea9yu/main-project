@@ -8,7 +8,7 @@ export default function Home() {
 	const selSort = ["낮은가격순", "높은가격순"]
 
 	return (
-		<div className="bg-gray-200 w-full h-full flex flex-col justify-center items-center">
+		<div className=" w-full h-full flex flex-col justify-center items-center bg-black">
 			<div className='w-full'>
 				<img src={clothesStore} alt="nineOnce" className="w-4/5 mx-auto shadow-lg" 
 				// style={{ width: '2000px', height: '1000px' }} 

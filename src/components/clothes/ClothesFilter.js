@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import plate from '../../images/namelabel.png'
 
 export default function ClothesFilter({ setSubCategory, setPageInit }) {
   const categories = {
@@ -46,9 +47,12 @@ export default function ClothesFilter({ setSubCategory, setPageInit }) {
 	};
 
   return (
-    <div className="mt-20 bg-white">
+    <div className="mt-20 ">
       <div className="flex flex-col">
-				<button className='border-b border-black p-2 m-1 mb-2 w-32 font-bold' onClick={handleSetALL}>전체</button>
+				<button className='border-b border-black p-2 m-1 mb-2 w-32 font-bold' onClick={handleSetALL}>
+          <img src={plate} alt='plate.png' className='w-full h-auto'/>          
+            <div className='absolute text-white top-0'>전체</div>          
+        </button>
         {Object.keys(categories).map((category) => (
           <div key={category}>
             <button

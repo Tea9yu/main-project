@@ -19,7 +19,7 @@ code {
 
 @layer components{
   .totalContainer{
-    @apply w-full flex flex-col justify-center items-center
+    @apply pt-20 w-full flex flex-col justify-center items-center
   }
   .innerContainer {
     @apply lg:max-w-[61rem] min-w-96 w-4/5 my-auto py-6

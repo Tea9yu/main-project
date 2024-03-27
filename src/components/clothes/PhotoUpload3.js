@@ -6,10 +6,13 @@ import PhotoResultPage from './PhotoResultPage';
 import Loading from '../../UI/Loading';
 import { useNavigate } from 'react-router-dom';
 import BarChart from '../../UI/BarChart';
+import EXIF from 'exif-js';
+import plate from '../../images/namelabel.png'
 
 const ImageUpload = () => {
 	const [selectedFile, setSelectedFile] = useState(null);
 	const [preview, setPreview] = useState(null);
+	const [dimensions,setDimensions] = useState(null);
 	const [fileName, setFileName] = useState('');	// 파일 이름을 저장할 상태를 추가합니다.
 	const [dataA, setDataA] = useState();
 	const [uploadSuccess, setUploadSuccess] = useState(false);
@@ -26,14 +29,25 @@ const ImageUpload = () => {
 		// setSelectedFile(event.target.files[0]);
 		// if (file && file.type.startsWith('image/')) {
 		// 	setFileName(file.name);	// 파일이 선택되면 파일 이름을 저장합니다.
-		// 	// const reader = new FileReader();
-		// 	// reader.onloadend = () => {
-		// 	// 	setPreview(reader.result);
-		// 	// };
-		// 	// reader.readAsDataURL(file);
-		// 	const img = new Image();
-		// 	img.src = URL.createObjectURL(file);
-		// 	img.onload = () => {
+			// const reader = new FileReader();
+			// reader.onload = () => {
+			// 	const img = new Image();
+			// if (file) {
+			// 	EXIF.getData(file, function() {
+			// 	  const width = EXIF.getTag(this, "PixelXDimension");
+			// 	  const height = EXIF.getTag(this, "PixelYDimension");
+			// 	  setDimensions(( width, height ));
+			// 	});
+			//   }
+			// console.log(dimensions)
+			// };
+			// reader.readAsDataURL(file);
+			// const img = new Image();
+			// img.src = URL.createObjectURL(file);
+			// img.onload = () => {
+			// 	setFileSize([img.width,img.height])
+			// }
+			// console.log(fileSize)
 		// 		const canvas = document.createElement('canvas');
 		// 		const MAX_WIDTH = 800; // 이미지의 최대 너비를 설정합니다.
 		// 		const scaleSize = MAX_WIDTH / img.width; // 이미지의 스케일을 계산합니다.
@@ -117,19 +131,18 @@ const ImageUpload = () => {
 				console.log('res', res);
 				if (!res) {
 					// 응답이 실패한 경우 오류를 throw 합니다.
-					alert('Failed to fetch res');
+					alert('응답 오류');
 					setLoading(false);
 					return
 				}
 				if (!res.ok) {
 					// 응답이 실패한 경우 오류를 throw 합니다.
-					alert('Failed to fetch');
+					alert('업로드 실패');
 					setLoading(false);
 					return
 				}
 				let data = await res.json()
 				setDataA(data);
-				alert('업로드 성공');
 				setUploadSuccess(true);	// 업로드 성공 시 상태 변경				
 				setLoading(false);	// api 호출 완료 됐을 때 false 로 변경하려 로딩화면 숨김처리				
 				// console.log('res',res)
@@ -183,36 +196,42 @@ const ImageUpload = () => {
 	}
 	if (uploadSuccess && dataA) {
 		return (
-			<div>
+			<main className='w-4/5 mx-auto'>
 				<div>
 				<BarChart response={dataA} />
 				</div>
 				<div>
 				{uploadSuccess && dataA && <PhotoResultPage response={dataA} />}
 				</div>
-			</div>
+			</main>
 		)
 	}
 	return (
-		<div className='flex justify-center mt-10 bg-white h-full min-w-[1050px]'>
+		<div className='flex justify-center mt-10  h-full min-w-[1050px]'>
 			<div className='m-10 '>
-				<div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-					<div>
-						<div style={{ border: `4px dashed ${selectedFile ? 'green' : '#d4c3ed'}`, borderRadius: '30px', padding: '10px', width: '500px', height: '600px' }}
+				<div className='flex flex-col justify-center items-center'>
+						<div className='mt-5 flex gap-5 items-center border p-2 rounded-2xl w-full'>
+							<input type="file" onChange={handleFileChange} ref={fileInputRef} style={{ display: 'none' }} /> {/* 파일 입력 요소를 숨깁니다 */}
+							<button className='border-4 border-[#3a3a3a] border-double rounded-sm bg-[#eee6bc] text-[#161616] hover:bg-[#ffecad] hover:text-[#161616]  p-2' onClick={handleFileButtonClick}>파일 첨부</button> {/* 사용자 정의 버튼을 추가합니다 */}
+							{fileName && <p>선택된 파일: {fileName}</p>} {/* 선택한 파일의 이름을 표시합니다 */}
+						</div>
+						
+						<div className='shadow-lg rounded-sm px-2 py-2' style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', borderStyle: 'solid', borderColor: selectedFile ? '#769ba3' : 'white', borderWidth: '6px', width: '450px', height: '550px' }}
 							onDragOver={handleDragOver}
 							onDrop={handleDrop}
 						>
-							{preview && <img src={preview} alt='Preview' style={{ width: '100%', height: '100%', borderRadius: '20px' }} />}
+							<div className='w-full h-full' style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', borderStyle: 'solid', borderColor: selectedFile ? '#769ba3' : 'white', borderWidth: '6px'}}>
+								<div className='w-full h-full flex justify-center items-center'>
+							{preview && <img src={preview} alt='Preview' className='flex justify-center items-center h-full max-w-full' />}
+							</div>
 						</div>
-						<div className='mt-5 flex gap-5 items-center border p-2 rounded-2xl' style={{ width: '500px' }}>
-							<input type="file" onChange={handleFileChange} ref={fileInputRef} style={{ display: 'none' }} /> {/* 파일 입력 요소를 숨깁니다 */}
-							<button className='border rounded-3xl bg-[#769ba3] text-white p-2' onClick={handleFileButtonClick}>파일 첨부</button> {/* 사용자 정의 버튼을 추가합니다 */}
-							{fileName && <p>선택된 파일: {fileName}</p>} {/* 선택한 파일의 이름을 표시합니다 */}
 						</div>
+
 						<div className=''>
-							<button onClick={handleUpload} className='w-full rounded-3xl mt-10 border p-4 hover:bg-[#d09aff]/50' style={{ width: '500px' }} >업로드</button>
+							<button onClick={handleUpload} className='w-full rounded-3xl p-4' >
+							<img src={plate} alt='plate' className='w-44' style={{ borderRadius: '5px' }} />
+							</button>
 						</div>
-					</div>
 					{/* <div className='w-full ml-10'>카테고리</div> */}
 				</div>
 				<div>
