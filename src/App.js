@@ -17,6 +17,8 @@ import Mypage from './components/member/Mypage';
 import Loading from './UI/Loading';
 import BarChart from './UI/BarChart';
 import AdminPage from './components/member/AdminPage';
+import ClothesDetail from './components/clothes/ClothesDetail';
+import PhotoRerender from './components/clothes/PhotoRerender';
 
 
 
@@ -39,8 +41,10 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/join' element={<Join />} />
             <Route path='/upload' element={<UploadPhotoPage />} />
+            <Route path='/rerender' element={<PhotoRerender/>} />
             <Route path='/loading' element={<Loading />} />            
             <Route path='/clothes' element={<ClothesInfo />} />
+            <Route path='/detail/:productCode' element={<ClothesDetail />} />
             <Route path='/mypage' element={<Mypage />} />
             <Route path='/admin' element={<AdminPage />} />
             {/* <Route path='/food' element={<BusanFoodInfo />} />

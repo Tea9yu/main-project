@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Pagination from 'react-js-pagination';
 import './paginate.css';
 import ClothesFilter from './ClothesFilter';
+import { useNavigate } from 'react-router-dom';
 
 export default function ClothesInfo() {
   // const categories = ['ALL', 'OUTER', 'TOP', 'BOTTOM'];  // 상품 카테고리
@@ -10,7 +11,7 @@ export default function ClothesInfo() {
   // const categoryMap = {'아우터' : ['JP', 'JK', 'CT', 'VT', 'CA'], '상의': ['TS', 'TN', 'KT', 'KN', 'BL', 'WS', 'BN'], '하의': ['PT', 'DP', 'SK', 'LG'] };  // 카테고리 매핑
   // const categories = ['ALL', ...Object.keys(categoryMap)];  // 상품 카테고리
   const [selectedCategory, setSelectedCategory] = useState('ALL');  // 추가된 상태 변수
-
+  const navigate = useNavigate();
   const [clothesList, setClothesList] = useState([]);
   const [itemsCountPerPage, setItemsCountPerPage] = useState([]);
   // const [clothesTag, setClothesTag] = useState([]);
@@ -112,8 +113,8 @@ export default function ClothesInfo() {
 
   return (
     <div className='flex'>
-      <div className='p-4 border-r h-screen fixed left-0 min-w-[250px] max-w-[250px]'>
-        <h2 className='font-bold mb-4 mt-16'>Categories</h2>
+      <div className='p-4 border-r border-black h-screen fixed left-0 min-w-[250px] max-w-[250px]'>
+        {/* <h2 className='font-bold mb-4 mt-16'>Categories</h2> */}
         <ClothesFilter setSubCategory={setSelectedCategory} setPageInit={setPage} />
         {/* {categories.map((category, index) => (
           <button onClick={handleBoolean} key={index} className='border flex flex-col p-2 w-full m-2 justify-center' 
@@ -125,8 +126,9 @@ export default function ClothesInfo() {
         <h2 className='font-bold mb-4 mt-16'>Products</h2>
         <div className='grid xl:grid-cols-5 lg:grid-cols-4 grid-cols-4 gap-4 min-w-[900px]'>
           {clothesList && clothesList.map((item, index) =>
+          <button onClick={()=>navigate(`../detail/${item.productCode}`)}>
             <div key={index} className='flex flex-wrap justify-center'>
-              <div className='border rounded-lg p-4 m-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 flex-grow-0 flex-shrink-0' 
+              <div className='border bg-white rounded-lg p-4 m-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 flex-grow-0 flex-shrink-0' 
               style={{width: '200px', minWidth: '200px', flex: ' 1 0 auto'}}
               >
                 <div>
@@ -146,6 +148,7 @@ export default function ClothesInfo() {
                 </div>
               </div>
             </div>
+            </button>
           )}
         </div>
 

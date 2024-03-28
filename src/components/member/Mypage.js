@@ -12,7 +12,8 @@ export default function Mypage(setIsLoggedIn) {
 	const [totalNum, setTotalNum] = useState();
 	const [page, setPage] = useState(1);
 	const navigate = useNavigate();
-
+	
+	
 
 
 	const isLoggedIn = localStorage.getItem("token");
@@ -51,7 +52,7 @@ export default function Mypage(setIsLoggedIn) {
 		let tag = recommendList.map((item, index) =>
 			<div className='flex' key={item + index}>
 				<div className='px-6 py-4'>
-					<div className="inline-flex justify-center items-center w-8 h-7 bg-violet-400 text-white rounded-md mx-2">
+					<div className="inline-flex justify-center items-center w-8 h-7 bg-black text-white rounded-md mx-2">
 						{/* {item.customerNum} */}
 						{(totalNum + 1) - (index + 1 + (page - 1) * 10)}
 					</div>
@@ -82,19 +83,19 @@ export default function Mypage(setIsLoggedIn) {
 		<div className="pt-10 min-w-[600px] w-full h-full flex flex-col justify-center items-center">
 			<div class="w-3/5 h-[30svw]  grid grid-rows-5 grid-flow-col gap-4">
   			<div class="row-start-1 row-span-3 ...">
-					<div className='w-full h-full min-w-32 min-h-32 border-8 border-double border-white p-3'>
+					<div className='w-full h-full min-w-32 min-h-32 border-8 border-double border-white p-3 shadow-lg'>
 						<div className='bg-white w-full h-full'></div>
 					</div>
 				</div>
 				
 				<div class=" row-end-6 row-span-3  ...">
-				<div className='w-full h-full min-w-32 min-h-32 border-8 border-double border-white p-3'>
+				<div className='w-full h-full min-w-32 min-h-32 border-8 border-double border-white p-3 shadow-lg'>
 						<div className='bg-white w-full h-full'></div>
 					</div>
 				</div>
 				
 				<div class="row-start-2 row-end-4 ...">
-				<div className='w-full h-full min-w-32 min-h-32 border-8 border-double border-white p-3'>
+				<div className='w-full h-full min-w-32 min-h-32 border-8 border-double border-white p-3 shadow-lg'>
 						<button className='bg-white w-full h-full font-bold' onClick={handleLogout}>Logout</button>
 					</div>
 				</div>
@@ -104,13 +105,13 @@ export default function Mypage(setIsLoggedIn) {
 					// ref={numberRef}
 					type="text"
 					className="text-xs sm:text-sm lg:text-base bg-gray-200 border-2 border-gray-200 w-[12rem] sm:w-[17.1rem]"
-					placeholder="차량번호를 입력해주세요"
+					placeholder="를 입력해주세요"
 				/> */}
 				{/* <button onClick={handleSearchNumber} className="text-xs sm:text-sm lg:text-base ml-2 lg:ml-[14px] sm:pt-[8px] sm:pb-[7px] sm:ml-[15px] py-2 lg:p-2 w-[3rem] sm:w-[4rem] lg:w-[5rem] text-white border-2 border-[#1D647A] bg-[#1D647A]">검색</button> */}
 			</div>
-			<div className="mt-[2rem] w-3/4 flex justify-end">
+			{/* <div className="mt-[2rem] w-3/4 flex justify-end">
 				<button className='border p-2 rounded-xl items-end hover:bg-[]' onClick={handleLogout}>로그아웃</button>
-			</div>
+			</div> */}
 			<div className="mt-[2rem] w-full flex flex-col justify-center items-center">
 
 
@@ -173,8 +174,8 @@ export default function Mypage(setIsLoggedIn) {
 					</div>
 				</div> */}
 
-				<div className="relative w-3/4 shadow-md  border-t-4 border-[#d4c3ed] justify-center">
-					<div className="flex  border-[#d4c3ed] border-b-4 font-bold">
+				<div className="relative w-3/4 shadow-md  border-t-4 border-black justify-center">
+					<div className="flex  border-black border-b-4 font-bold">
 						<div className="w-1/4 py-2 ml-5">번호</div>
 						<div className="w-2/4 py-2">이미지명</div>
 						<div className="w-1/4 py-2">날짜</div>

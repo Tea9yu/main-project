@@ -109,7 +109,7 @@ const BarChart = (response, handleCategoryClick) => {
 	};
 
 	return (
-		<div className='w-1/3 bg-white mt-20'>
+		<div className='w-1/3 mt-20'>
 			{/* 그래프를 그릴 canvas 요소입니다. */}
 			<canvas id="categoryGraph" width="400" height="400"></canvas>
 		</div>

@@ -42,7 +42,7 @@ export default function Nav() {
 										aria-current="page">ABOUT US</Link>
 								</li>
 								<li>
-									<Link to='/upload' className="block py-2 pl-3 pr-4 text-white  border-gray-100 hover:bg-pink-500 rounded  dark:text-gray-400  dark:hover:bg-gray-700 dark:hover:text-white  dark:border-gray-700">SEVICE</Link>
+									<Link to='/upload' className="block py-2 pl-3 pr-4 text-white  border-gray-100 hover:bg-pink-500 rounded  dark:text-gray-400  dark:hover:bg-gray-700 dark:hover:text-white  dark:border-gray-700">SERVICE</Link>
 								</li>
 								<li>
 									<Link to='/clothes'

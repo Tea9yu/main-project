@@ -13,11 +13,13 @@ ul.pagination li {
     display: inline-block;
     width: 40px;
     height: 35px;
+    /* border: 1px solid rgb(225, 173, 255); */
     border: 1px solid #e2e2e2;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1rem;
+    background-color: black;
 }
 
 ul.pagination li:first-child {
@@ -33,21 +35,21 @@ ul.pagination li:last-child {
 ul.pagination li a {
     text-decoration: none;
     /*color: #0d812a;*/
-    color: rgb(112, 112, 112);
+    color: white;
     font-size: 1rem;
 }
 
 ul.pagination li.active a {
-    /* color: white; */
-    color: rgb(0, 0, 0);
+    color: white;
+    /* color: rgb(0, 0, 0); */
 }
 
 ul.pagination li.active {
     /*background-color: #16c78c;*/
     /* background-color: rgb(253 186 116); */
-    background-color: rgb(219, 219, 219);
+    background-color: #BB91E3;
     /* color: white; */
     color: rgb(112, 112, 112);
 }
 
-ul.pagination li:hover:not(.active) {background-color: #ddd;}
+ul.pagination li:hover:not(.active) {background-color: #d88efa;}

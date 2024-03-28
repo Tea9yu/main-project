@@ -14,8 +14,8 @@ export default function ClothesFilter({ setSubCategory, setPageInit }) {
   // const [subCategories, setSubCategories] = useState({});
   const [isOpen, setIsOpen] = useState(false);
 
-	
-	
+
+
 
   const handleMainCategoryClick = (category) => {
     if (mainCategory === category) {
@@ -25,7 +25,7 @@ export default function ClothesFilter({ setSubCategory, setPageInit }) {
       setIsOpen(true); // 대분류를 클릭하면 중분류를 엽니다.
       setMainCategory(category);
       // 대분류에 해당하는 중분류 카테고리를 서버로부터 받아옵니다.
-      
+
     }
   };
 
@@ -36,28 +36,28 @@ export default function ClothesFilter({ setSubCategory, setPageInit }) {
     // 예를 들어, 부모 컴포넌트에 선택한 카테고리 정보를 전달할 수 있습니다.
     // 전달된 함수를 호출하여 선택한 카테고리 정보를 부모 컴포넌트로 전달할 수 있습니다.
     // 이를 위해 ClothesFilter 컴포넌트의 props로 onSubCategoryClick 함수를 받아와 사용합니다.
-		// fetchSubCategories(subCategoryCode);
+    // fetchSubCategories(subCategoryCode);
     // onSubCategoryClick(mainCategory, subCategoryCode);
-		setSubCategory(subCategoryCode)
-		setPageInit(1);
+    setSubCategory(subCategoryCode)
+    setPageInit(1);
   };
 
-	const handleSetALL = () => {
-		setSubCategory("ALL")
-	};
+  const handleSetALL = () => {
+    setSubCategory("ALL")
+  };
 
   return (
     <div className="mt-20 ">
-      <div className="flex flex-col">
-				<button className='border-b border-black p-2 m-1 mb-2 w-32 font-bold' onClick={handleSetALL}>
-          <img src={plate} alt='plate.png' className='w-full h-auto'/>          
-            <div className='absolute text-white top-0'>전체</div>          
+      <div className="flex flex-col justify-center items-center">
+        <button className='relative border-b border-black p-2 m-1 mb-2 w-32 font-bold' onClick={handleSetALL}>
+          <img src={plate} alt='plate.png' className='w-full h-auto' />
+          <div className='absolute top-9 text-white left-11 '>전체</div>
         </button>
         {Object.keys(categories).map((category) => (
           <div key={category}>
             <button
               onClick={() => handleMainCategoryClick(category)}
-              className="border p-2 m-1 w-32"
+              className="border p-2 m-1 w-32 bg-black text-white"
             >
               {category}
             </button>
@@ -67,7 +67,7 @@ export default function ClothesFilter({ setSubCategory, setPageInit }) {
                   <button
                     key={code}
                     onClick={() => handleSubCategoryClick(code)}
-                    className="p-2 m-1 w-32"
+                    className="p-2 m-1 w-32 bg-gray-700 text-white"
                   >
                     {subCategory}
                   </button>

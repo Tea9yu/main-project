@@ -1,18 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Test2 from '../../Test2';
 import { LoginStAtom } from '../member/LoginStAtom';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import PhotoResultPage from './PhotoResultPage';
 import Loading from '../../UI/Loading';
 import { useNavigate } from 'react-router-dom';
 import BarChart from '../../UI/BarChart';
 import EXIF from 'exif-js';
-import plate from '../../images/namelabel.png'
+import plate2 from '../../images/plate2.png';
+import { ResultAtom } from './ResultAtom';
 
 const ImageUpload = () => {
 	const [selectedFile, setSelectedFile] = useState(null);
 	const [preview, setPreview] = useState(null);
-	const [dimensions,setDimensions] = useState(null);
+	const [imgSize,setImgSize] = useState({width:450,height:550});
 	const [fileName, setFileName] = useState('');	// 파일 이름을 저장할 상태를 추가합니다.
 	const [dataA, setDataA] = useState();
 	const [uploadSuccess, setUploadSuccess] = useState(false);
@@ -23,7 +24,12 @@ const ImageUpload = () => {
 	const navigate = useNavigate();
 
 	const fileInput = useRef();	// 파일 입력 요소를 참조할 ref를 생성합니다.
+	const setPhotoResult = useSetRecoilState(ResultAtom);
 
+
+	// useEffect(()=>{
+	// 	setUploadSuccess(false)
+	// },[])
 	const handleFileChange = (event) => {
 		const file = event.target.files[0];
 		// setSelectedFile(event.target.files[0]);
@@ -36,10 +42,10 @@ const ImageUpload = () => {
 			// 	EXIF.getData(file, function() {
 			// 	  const width = EXIF.getTag(this, "PixelXDimension");
 			// 	  const height = EXIF.getTag(this, "PixelYDimension");
-			// 	  setDimensions(( width, height ));
+			// 	  setImgSize(( width, height ));
 			// 	});
 			//   }
-			// console.log(dimensions)
+			// console.log(imgSize)
 			// };
 			// reader.readAsDataURL(file);
 			// const img = new Image();
@@ -70,7 +76,23 @@ const ImageUpload = () => {
 		if (file && file.type.startsWith('image/')) {
 			setFileName(file.name); // 파일이 선택되면 파일 이름을 저장합니다.
 			setSelectedFile(file); // 이미지를 변환하지 않고 그대로 저장합니다.
-			setPreview(URL.createObjectURL(file));
+			const fileurl = URL.createObjectURL(file)
+			setPreview(fileurl);
+			const img = new Image();
+      img.src = fileurl
+			let width = 450
+			let height = 450
+      img.onload = () => {
+				if(img.width<=img.height){
+					height = img.height*(450/img.width)
+				}
+				else{
+					width = img.width*(450/img.height)
+				}
+          setImgSize({width:width,height:height})
+					console.log('img',img.width)
+					console.log('imageSize',imgSize['width'])
+      }
 		} else {
 			alert("파일 형식이 잘못되었습니다.");
 			window.location.reload();
@@ -142,7 +164,11 @@ const ImageUpload = () => {
 					return
 				}
 				let data = await res.json()
+				data = {...data,
+					preview:preview,
+					imgSize:imgSize}
 				setDataA(data);
+				setPhotoResult(data);
 				setUploadSuccess(true);	// 업로드 성공 시 상태 변경				
 				setLoading(false);	// api 호출 완료 됐을 때 false 로 변경하려 로딩화면 숨김처리				
 				// console.log('res',res)
@@ -197,7 +223,14 @@ const ImageUpload = () => {
 	if (uploadSuccess && dataA) {
 		return (
 			<main className='w-4/5 mx-auto'>
-				<div>
+				<div className='flex justify-center items-center'>
+				<div className='mt-5 shadow-lg rounded-sm px-2 py-2' style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', borderStyle: 'solid', borderColor: 'white', borderWidth: '6px', width: `${imgSize['width']*0.8}px`, height: `${imgSize['height']*0.8}px` }}>
+							<div className='w-full h-full' style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', borderStyle: 'solid', borderColor: 'white', borderWidth: '6px'}}>
+								<div className='w-full h-full flex justify-center items-center'>
+							{preview && <img src={preview} alt='Preview' className='flex justify-center items-center h-full max-w-full' />}
+							</div>
+						</div>
+						</div>
 				<BarChart response={dataA} />
 				</div>
 				<div>
@@ -210,13 +243,13 @@ const ImageUpload = () => {
 		<div className='flex justify-center mt-10  h-full min-w-[1050px]'>
 			<div className='m-10 '>
 				<div className='flex flex-col justify-center items-center'>
-						<div className='mt-5 flex gap-5 items-center border p-2 rounded-2xl w-full'>
+						<div className='mt-5 flex gap-5 items-center p-2 rounded-2xl w-full'>
 							<input type="file" onChange={handleFileChange} ref={fileInputRef} style={{ display: 'none' }} /> {/* 파일 입력 요소를 숨깁니다 */}
 							<button className='border-4 border-[#3a3a3a] border-double rounded-sm bg-[#eee6bc] text-[#161616] hover:bg-[#ffecad] hover:text-[#161616]  p-2' onClick={handleFileButtonClick}>파일 첨부</button> {/* 사용자 정의 버튼을 추가합니다 */}
 							{fileName && <p>선택된 파일: {fileName}</p>} {/* 선택한 파일의 이름을 표시합니다 */}
 						</div>
 						
-						<div className='shadow-lg rounded-sm px-2 py-2' style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', borderStyle: 'solid', borderColor: selectedFile ? '#769ba3' : 'white', borderWidth: '6px', width: '450px', height: '550px' }}
+						<div className='shadow-lg rounded-sm px-2 py-2' style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', borderStyle: 'solid', borderColor: selectedFile ? '#769ba3' : 'white', borderWidth: '6px', width: `${imgSize['width']}px`, height: `${imgSize['height']}px` }}
 							onDragOver={handleDragOver}
 							onDrop={handleDrop}
 						>
@@ -228,8 +261,9 @@ const ImageUpload = () => {
 						</div>
 
 						<div className=''>
-							<button onClick={handleUpload} className='w-full rounded-3xl p-4' >
-							<img src={plate} alt='plate' className='w-44' style={{ borderRadius: '5px' }} />
+							<button onClick={handleUpload} className='relative w-full rounded-3xl p-4 font-bold' >
+							<img src={plate2} alt='plate' className='w-44' style={{ borderRadius: '5px' }} />
+							<div className='absolute text-white top-9 left-20'>업로드</div>
 							</button>
 						</div>
 					{/* <div className='w-full ml-10'>카테고리</div> */}

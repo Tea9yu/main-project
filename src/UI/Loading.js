@@ -3,7 +3,7 @@ import Spinner from '../images/Spinner.gif'
 
 export default function Loading() {
 	return (
-		<div className='fixed top-0  w-screen h-screen flex flex-col justify-center items-center'>
+		<div className='fixed top-0 bg-[#E5DEEC] w-screen h-screen flex flex-col justify-center items-center'>
 			<div>
 				<img src={Spinner} />
 			</div>
