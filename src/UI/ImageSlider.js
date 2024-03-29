@@ -11,7 +11,7 @@ const ImageSlider = () => {
   const settings = {
     dots: true,
     infinite: true,
-    slidesToShow: 5,
+    slidesToShow: 1,
     slidesToScroll: 2,
     autoplay: true,
     autoplaySpeed: 4000,
@@ -23,6 +23,7 @@ const ImageSlider = () => {
     <div  className="slider-container">
       {/* <h2> Single Item</h2> */}
       <Slider {...settings}>
+      {/* <div className="slick_prev w-30 h-30 text-white"></div> */}
         <div>
            <img src={img1} className="w-4/5 mx-auto h-96" />
         </div>

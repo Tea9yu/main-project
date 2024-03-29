@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -11,11 +11,11 @@ import Nav from './UI/Nav';
 import UploadPhotoPage from './components/clothes/PhotoUpload3';
 import ClothesInfo from './components/clothes/ClothesInfo';
 import Test from './Test2';
-import CategorySelector from './components/clothes/CategorySelector';
+
 import ClothesFilter from './components/clothes/ClothesFilter';
 import Mypage from './components/member/Mypage';
 import Loading from './UI/Loading';
-import BarChart from './UI/BarChart';
+
 import AdminPage from './components/member/AdminPage';
 import ClothesDetail from './components/clothes/ClothesDetail';
 import PhotoRerender from './components/clothes/PhotoRerender';
@@ -26,14 +26,14 @@ import PhotoRerender from './components/clothes/PhotoRerender';
 
 function App() {
   return (
-    <div className='w-full min-h-screen bg-[#E5DEEC]'>
+    <div className='w-full min-w-screen min-h-screen bg-[#E5DEEC]'>
     <BrowserRouter>
       <RecoilRoot>
         <div className='w-full h-full'>
           <div className=' bg-[#E5DEEC]'>
             <Nav />
           </div>
-          <div className='pt-10'>
+          <div className=''>
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/test' element={<Test />} />

@@ -123,7 +123,7 @@ export default function ClothesInfo() {
         ))} */}
       </div>
       <div className='flex flex-col flex-grow ml-64 p-4'>
-        <h2 className='font-bold mb-4 mt-16'>Products</h2>
+        <h2 className='font-bold mb-4'>Products</h2>
         <div className='grid xl:grid-cols-5 lg:grid-cols-4 grid-cols-4 gap-4 min-w-[900px]'>
           {clothesList && clothesList.map((item, index) =>
           <button onClick={()=>navigate(`../detail/${item.productCode}`)}>

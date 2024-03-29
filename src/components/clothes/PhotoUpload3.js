@@ -13,7 +13,7 @@ import { ResultAtom } from './ResultAtom';
 const ImageUpload = () => {
 	const [selectedFile, setSelectedFile] = useState(null);
 	const [preview, setPreview] = useState(null);
-	const [imgSize,setImgSize] = useState({width:450,height:550});
+	const [imgSize, setImgSize] = useState({ width: 450, height: 550 });
 	const [fileName, setFileName] = useState('');	// 파일 이름을 저장할 상태를 추가합니다.
 	const [dataA, setDataA] = useState();
 	const [uploadSuccess, setUploadSuccess] = useState(false);
@@ -35,25 +35,25 @@ const ImageUpload = () => {
 		// setSelectedFile(event.target.files[0]);
 		// if (file && file.type.startsWith('image/')) {
 		// 	setFileName(file.name);	// 파일이 선택되면 파일 이름을 저장합니다.
-			// const reader = new FileReader();
-			// reader.onload = () => {
-			// 	const img = new Image();
-			// if (file) {
-			// 	EXIF.getData(file, function() {
-			// 	  const width = EXIF.getTag(this, "PixelXDimension");
-			// 	  const height = EXIF.getTag(this, "PixelYDimension");
-			// 	  setImgSize(( width, height ));
-			// 	});
-			//   }
-			// console.log(imgSize)
-			// };
-			// reader.readAsDataURL(file);
-			// const img = new Image();
-			// img.src = URL.createObjectURL(file);
-			// img.onload = () => {
-			// 	setFileSize([img.width,img.height])
-			// }
-			// console.log(fileSize)
+		// const reader = new FileReader();
+		// reader.onload = () => {
+		// 	const img = new Image();
+		// if (file) {
+		// 	EXIF.getData(file, function() {
+		// 	  const width = EXIF.getTag(this, "PixelXDimension");
+		// 	  const height = EXIF.getTag(this, "PixelYDimension");
+		// 	  setImgSize(( width, height ));
+		// 	});
+		//   }
+		// console.log(imgSize)
+		// };
+		// reader.readAsDataURL(file);
+		// const img = new Image();
+		// img.src = URL.createObjectURL(file);
+		// img.onload = () => {
+		// 	setFileSize([img.width,img.height])
+		// }
+		// console.log(fileSize)
 		// 		const canvas = document.createElement('canvas');
 		// 		const MAX_WIDTH = 800; // 이미지의 최대 너비를 설정합니다.
 		// 		const scaleSize = MAX_WIDTH / img.width; // 이미지의 스케일을 계산합니다.
@@ -79,20 +79,20 @@ const ImageUpload = () => {
 			const fileurl = URL.createObjectURL(file)
 			setPreview(fileurl);
 			const img = new Image();
-      img.src = fileurl
+			img.src = fileurl
 			let width = 450
 			let height = 450
-      img.onload = () => {
-				if(img.width<=img.height){
-					height = img.height*(450/img.width)
+			img.onload = () => {
+				if (img.width <= img.height) {
+					height = img.height * (450 / img.width)
 				}
-				else{
-					width = img.width*(450/img.height)
+				else {
+					width = img.width * (450 / img.height)
 				}
-          setImgSize({width:width,height:height})
-					console.log('img',img.width)
-					console.log('imageSize',imgSize['width'])
-      }
+				setImgSize({ width: width, height: height })
+				console.log('img', img.width)
+				console.log('imageSize', imgSize['width'])
+			}
 		} else {
 			alert("파일 형식이 잘못되었습니다.");
 			window.location.reload();
@@ -119,6 +119,7 @@ const ImageUpload = () => {
 		if (!selectedFile) {
 			alert('사진을 첨부해주세요.');
 			setLoading(false);	// 파일을 첨부하지 않으면 로딩 상태를 false로 변경하여 로딩화면을 숨깁니다.
+			console.log('isLoggedIn: ', isLoggedIn);
 			return;
 		}
 
@@ -164,15 +165,16 @@ const ImageUpload = () => {
 					return
 				}
 				let data = await res.json()
-				data = {...data,
-					preview:preview,
-					imgSize:imgSize}
+				data = {
+					...data,
+					preview: preview,
+					imgSize: imgSize
+				}
 				setDataA(data);
 				setPhotoResult(data);
 				setUploadSuccess(true);	// 업로드 성공 시 상태 변경				
 				setLoading(false);	// api 호출 완료 됐을 때 false 로 변경하려 로딩화면 숨김처리				
-				// console.log('res',res)
-				// navigate(-1);	// 이전화면으로 돌아가기
+				// console.log('data',data)
 			}
 			)
 			.catch(err => {
@@ -202,14 +204,6 @@ const ImageUpload = () => {
 
 	};
 
-	// useEffect(() => {
-	// 	ImageUpload();
-	// }, [])
-
-	useEffect(() => {
-		console.log('dataA', dataA);
-	}, [dataA])
-
 	const fileInputRef = useRef();
 	const handleFileButtonClick = () => {
 		fileInputRef.current.click();
@@ -223,49 +217,49 @@ const ImageUpload = () => {
 	if (uploadSuccess && dataA) {
 		return (
 			<main className='w-4/5 mx-auto'>
-				<div className='flex justify-center items-center'>
-				<div className='mt-5 shadow-lg rounded-sm px-2 py-2' style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', borderStyle: 'solid', borderColor: 'white', borderWidth: '6px', width: `${imgSize['width']*0.8}px`, height: `${imgSize['height']*0.8}px` }}>
-							<div className='w-full h-full' style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', borderStyle: 'solid', borderColor: 'white', borderWidth: '6px'}}>
-								<div className='w-full h-full flex justify-center items-center'>
-							{preview && <img src={preview} alt='Preview' className='flex justify-center items-center h-full max-w-full' />}
+				<div className='flex justify-center items-center flex-col md:flex-row'>
+					<div className='mt-5 shadow-lg rounded-sm px-2 py-2' style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', borderStyle: 'solid', borderColor: 'white', borderWidth: '6px', width: `${imgSize['width'] * 0.8}px`, height: `${imgSize['height'] * 0.8}px` }}>
+						<div className='w-full h-full' style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', borderStyle: 'solid', borderColor: 'white', borderWidth: '6px' }}>
+							<div className='w-full h-full flex justify-center items-center'>
+								{preview && <img src={preview} alt='Preview' className='flex justify-center items-center h-full max-w-full' />}
 							</div>
 						</div>
-						</div>
-				<BarChart response={dataA} />
+					</div>
+					<BarChart response={dataA} />
 				</div>
 				<div>
-				{uploadSuccess && dataA && <PhotoResultPage response={dataA} />}
+					{uploadSuccess && dataA && <PhotoResultPage response={dataA} />}
 				</div>
 			</main>
 		)
 	}
 	return (
-		<div className='flex justify-center mt-10  h-full min-w-[1050px]'>
+		<div className='flex justify-center h-full min-w-[1050px]'>
 			<div className='m-10 '>
 				<div className='flex flex-col justify-center items-center'>
-						<div className='mt-5 flex gap-5 items-center p-2 rounded-2xl w-full'>
-							<input type="file" onChange={handleFileChange} ref={fileInputRef} style={{ display: 'none' }} /> {/* 파일 입력 요소를 숨깁니다 */}
-							<button className='border-4 border-[#3a3a3a] border-double rounded-sm bg-[#eee6bc] text-[#161616] hover:bg-[#ffecad] hover:text-[#161616]  p-2' onClick={handleFileButtonClick}>파일 첨부</button> {/* 사용자 정의 버튼을 추가합니다 */}
-							{fileName && <p>선택된 파일: {fileName}</p>} {/* 선택한 파일의 이름을 표시합니다 */}
-						</div>
-						
-						<div className='shadow-lg rounded-sm px-2 py-2' style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', borderStyle: 'solid', borderColor: selectedFile ? '#769ba3' : 'white', borderWidth: '6px', width: `${imgSize['width']}px`, height: `${imgSize['height']}px` }}
-							onDragOver={handleDragOver}
-							onDrop={handleDrop}
-						>
-							<div className='w-full h-full' style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', borderStyle: 'solid', borderColor: selectedFile ? '#769ba3' : 'white', borderWidth: '6px'}}>
-								<div className='w-full h-full flex justify-center items-center'>
-							{preview && <img src={preview} alt='Preview' className='flex justify-center items-center h-full max-w-full' />}
+					<div className='mt-5 flex gap-5 items-center p-2 rounded-2xl w-full'>
+						<input type="file" onChange={handleFileChange} ref={fileInputRef} style={{ display: 'none' }} /> {/* 파일 입력 요소를 숨깁니다 */}
+						<button className='border-4 border-[#3a3a3a] border-double rounded-sm bg-[#eee6bc] text-[#161616] hover:bg-[#ffecad] hover:text-[#161616]  p-2' onClick={handleFileButtonClick}>파일 첨부</button> {/* 사용자 정의 버튼을 추가합니다 */}
+						{fileName && <p>선택된 파일: {fileName}</p>} {/* 선택한 파일의 이름을 표시합니다 */}
+					</div>
+
+					<div className='shadow-lg rounded-sm px-2 py-2' style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', borderStyle: 'solid', borderColor: selectedFile ? '#769ba3' : 'white', borderWidth: '6px', width: `${imgSize['width']}px`, height: `${imgSize['height']}px` }}
+						onDragOver={handleDragOver}
+						onDrop={handleDrop}
+					>
+						<div className='w-full h-full' style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', borderStyle: 'solid', borderColor: selectedFile ? '#769ba3' : 'white', borderWidth: '6px' }}>
+							<div className='w-full h-full flex justify-center items-center'>
+								{preview && <img src={preview} alt='Preview' className='flex justify-center items-center h-full max-w-full' />}
 							</div>
 						</div>
-						</div>
+					</div>
 
-						<div className=''>
-							<button onClick={handleUpload} className='relative w-full rounded-3xl p-4 font-bold' >
+					<div className=''>
+						<button onClick={handleUpload} className='relative w-full rounded-3xl p-4 font-bold' >
 							<img src={plate2} alt='plate' className='w-44' style={{ borderRadius: '5px' }} />
 							<div className='absolute text-white top-9 left-20'>업로드</div>
-							</button>
-						</div>
+						</button>
+					</div>
 					{/* <div className='w-full ml-10'>카테고리</div> */}
 				</div>
 				<div>

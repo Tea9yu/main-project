@@ -3,18 +3,44 @@ import TailSelect from '../../UI/TailSelect'
 import clothesStore from '../../images/Group 10.png'
 import { Link } from "react-router-dom";
 import HomeInfo from './HomeInfo';
+import jy from '../../images/journey.jpg'
 
 export default function Home() {
 	const selSort = ["낮은가격순", "높은가격순"]
 
 	return (
 		<div className=" w-full h-full flex flex-col justify-center items-center bg-black">
-			<div className='w-full'>
+			{/* <div className='w-full'>
 				<img src={clothesStore} alt="nineOnce" className="w-4/5 mx-auto shadow-lg" 
 				// style={{ width: '2000px', height: '1000px' }} 
 				/>
+			</div> */}
+			<div className='relative w-full h-screen flex flex-col justify-center items-center font-nanum mb-20'>
+				<div className='absolute top-[90px] text-[#A5A5A5]'>나만을 위한 옷을 찾는 여정</div>
+				<div className='absolute z-30 top-[100px] blur-[0.03rem] sm:text-[9svw] text-[100px]  text-[#FEFEFE]'>CHOICE</div>
+				<div className='absolute z-20 top-[200px] flex justify-center items-center  w-[25svw] min-w-64 shadow-[#616e75] shadow-xl  rounded-[6rem]'>
+					<img src={jy} alt='journey' className='rounded-[6rem] shadow-inner shadow-transparent' />
+				</div>
+				<div className='absolute z-10 top-[350px] w-screen h-[0.005rem] shadow-sm shadow-[#e3e2e2] bg-[#757575]'></div>
+				<div className='absolute z-30 top-[800px] text-[#FFFFFF]/50 font-garamond flex justify-evenly space-x-20'>
+					<div className=' flex flex-col justify-center items-center'>
+						<div className='text-sm'>FRONT-END</div>
+						<div className='text-lg'>Taegyu Kang</div>
+					</div>
+					<div className='flex flex-col justify-center items-center'>
+						<div className='text-sm'>BACK-END</div>
+						<div className='text-lg'>Sangmin Park</div>
+					</div>
+					<div className='flex flex-col justify-center items-center'>
+						<div className='text-sm'>DATA-SCIENCE</div>
+						<div className='text-lg'>Jihyeon Ohk</div>
+					</div>
+				</div>
 			</div>
-			<div className='w-full'>
+			<div className='w-full mt-10'>
+				<ImageSlider />
+			</div>
+			<div className='w-full mt-10'>
 				<ImageSlider />
 			</div>
 			<div className='w-full'>

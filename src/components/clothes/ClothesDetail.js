@@ -2,15 +2,19 @@ import React, { useEffect, useState } from 'react'
 import plate from '../../images/namelabel.png'
 import { useParams } from 'react-router-dom'
 import ClothesCard from './ClothesCard'
+import { useRecoilValue } from 'recoil'
+import { ResultAtom } from './ResultAtom'
 
 
 export default function ClothesDetail() {
     const [pdata,setPdata] = useState('')
 		const [recommendData,setRecommendData] = useState([])
 	  const { productCode } = useParams()
-		const [imgSize,setImgSize] = useState({width:400,height:500});
+		const [imgSize,setImgSize] = useState({width:300,height:400});
+    const photoResult = useRecoilValue(ResultAtom)
 		const imagePath = 'http://10.125.121.184:8080/product_image';
     useEffect(() => {
+      console.log("photoResult",photoResult)
         const url = 'http://10.125.121.184:8080'
         fetch(url + `/product/${productCode}`, {
             method: 'GET',
@@ -81,8 +85,8 @@ export default function ClothesDetail() {
                         <div className='absolute top-9 left-0 w-full  text-center text-[#dfdfdf]'>{pdata.name}</div>
                         <img src={plate} alt='plate' className='w-36 pb-5' />
                     </div>
-                    <div className={`shadow-lg border-[12px] border-double border-white w-[${imgSize['width']}px] h-[${imgSize['height']}px]`}>
-                    <img src={`${imagePath}/${productCode}.jpg`} alt={pdata.name} className='w-full h-full'/>
+                    <div className={`shadow-lg border-[12px] border-double border-white w-[${imgSize['width']*0.5}px] h-[${imgSize['height']*0.5}px]`}>
+                    <img src={`${imagePath}/${productCode}.jpg`} alt={pdata.name} className={`w-[${imgSize['width']*0.5}px] h-[${imgSize['height']*0.5}px]`}/>
                     </div>
                 </div>
                 <div className='bg-[#f6f4f6]/60 text-[#161616]/80  shadow-md  '>

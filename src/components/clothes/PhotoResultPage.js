@@ -14,6 +14,23 @@ export default function PhotoResultPage(response) {
   //   return
 
   const [recommendData, setRecommendData] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('상의');
+  useEffect(()=>{
+    if (resp.upper.style !== -1) {
+      setSelectedCategory('상의');
+      setRecommendData(resp.upper.recommend);
+    } else if(resp.skirt.style !== -1) {
+      setSelectedCategory('치마');
+      setRecommendData(resp.skirt.recommend);
+    } else if (resp.pants.style !== -1) {
+      setSelectedCategory('바지');
+      setRecommendData(resp.pants.recommend);
+    } else if (resp.dress.style !== -1) {
+      setSelectedCategory('드레스');
+      setRecommendData(resp.dress.recommend);
+    }
+  },[])
+  
 
 
   const handleCategoryClick = (category) => {
@@ -35,12 +52,7 @@ export default function PhotoResultPage(response) {
 
   // const imagePath =process.env.REACT_APP_STATIC_IMAGE;
   const imagePath = 'http://10.125.121.184:8080/product_image';
-
-  const [selectedCategory, setSelectedCategory] = useState('상의'); // 선택된 카테고리 상태 추가
-
-  useEffect(() => {
-    console.log('선택된 카테고리:', selectedCategory);
-  }, [selectedCategory]);
+ // 선택된 카테고리 상태 추가
 
   // 카테고리 선택 이벤트 핸들러
   const handleCategorySelect = (category) => {
@@ -56,6 +68,7 @@ export default function PhotoResultPage(response) {
 				<BarChart response={response} />
 				</div> */}
       </div>
+      <h1 className='text-xl font-bold'>{`위 사진의 ${selectedCategory}와 어울리는 추천 상품`}</h1>
       <div className="flex gap-4 mb-4">
         {resp.upper.style !== -1 && <button onClick={() => handleCategoryClick('상의')} className={`border px-4 py-2 rounded-lg ${selectedCategory === '상의' ? 'bg-violet-300' : 'bg-white'}`}>상의</button>}
         {resp.skirt.style !== -1 && <button onClick={() => handleCategoryClick('치마')} className={`border px-4 py-2 rounded-lg ${selectedCategory === '치마' ? 'bg-violet-300' : 'bg-white'}`}>치마</button>}
@@ -77,7 +90,7 @@ export default function PhotoResultPage(response) {
           )
         ))}
       </div>       */}
-      <h1>{`위 사진의 ${selectedCategory}와 어울리는 추천 상품`}</h1>
+      
       {/* 추천된 상품 리스트와 이미지를 표시합니다. */}
       <h2 className='font-bold'>아우터</h2>
       <div className='grid xl:grid-cols-5 lg:grid-cols-5 grid-cols-5 gap-6 min-w-[900px]'>

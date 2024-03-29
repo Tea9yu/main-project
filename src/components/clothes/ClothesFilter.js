@@ -47,7 +47,7 @@ export default function ClothesFilter({ setSubCategory, setPageInit }) {
   };
 
   return (
-    <div className="mt-20 ">
+    <div className="">
       <div className="flex flex-col justify-center items-center">
         <button className='relative border-b border-black p-2 m-1 mb-2 w-32 font-bold' onClick={handleSetALL}>
           <img src={plate} alt='plate.png' className='w-full h-auto' />
