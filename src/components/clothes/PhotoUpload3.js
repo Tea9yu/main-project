@@ -216,7 +216,7 @@ const ImageUpload = () => {
 	}
 	if (uploadSuccess && dataA) {
 		return (
-			<main className='w-4/5 mx-auto'>
+			<main className='w-4/5 mx-auto mt-16'>
 				<div className='flex justify-center items-center flex-col md:flex-row'>
 					<div className='mt-5 shadow-lg rounded-sm px-2 py-2' style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', borderStyle: 'solid', borderColor: 'white', borderWidth: '6px', width: `${imgSize['width'] * 0.8}px`, height: `${imgSize['height'] * 0.8}px` }}>
 						<div className='w-full h-full' style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', borderStyle: 'solid', borderColor: 'white', borderWidth: '6px' }}>

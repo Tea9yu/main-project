@@ -4,6 +4,7 @@ import clothesStore from '../../images/Group 10.png'
 import { Link } from "react-router-dom";
 import HomeInfo from './HomeInfo';
 import jy from '../../images/journey.jpg'
+import { Slide } from '@mui/material';
 
 export default function Home() {
 	const selSort = ["낮은가격순", "높은가격순"]
@@ -40,9 +41,9 @@ export default function Home() {
 			<div className='w-full mt-10'>
 				<ImageSlider />
 			</div>
-			<div className='w-full mt-10'>
-				<ImageSlider />
-			</div>
+			{/* <div className='w-full mt-10'>
+				<Slide />
+			</div> */}
 			<div className='w-full'>
 				<HomeInfo />
 			</div>

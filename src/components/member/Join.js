@@ -16,45 +16,54 @@ export default function Join() {
 	const navigate = useNavigate();
 
 		const handleChange = (e) => {
-			e.preventDefault();
-			if(selectedValue === true) {
-				setSelectedValue(false)
-			}
-			else {
-				setSelectedValue(true);
-			}
+			setSelectedValue(!selectedValue);
+			// e.preventDefault();
+			// if(selectedValue === true) {
+			// 	setSelectedValue(false)
+			// }
+			// else {
+			// 	setSelectedValue(true);
+			// }
 	};
 
-	// 이메일 중복확인
-	const userCheck = () => {
-		// 이메일을 입력하지 않았을 경우
-		if (userName === '') {
-			alert('사용자를 입력해주세요');
-			return;
-		}
+	// // 이메일 중복확인
+	// const userCheck = () => {
+	// 	// 이메일을 입력하지 않았을 경우
+	// 	if (userName === '') {
+	// 		alert('사용자를 입력해주세요');
+	// 		return;
+	// 	}
 
-		// axios.get(`http://10.125.121.184:8080/join`)
-		axios.get(`http://10.125.121.184:8080/checkDuplicateUser/${userName}`)
+	// 	// axios.get(`http://10.125.121.184:8080/join`)
+	// 	axios.get(`http://10.125.121.184:8080/checkDuplicateUser/${userName}`)
 
-			.then(res => {
-				if (res.status === 200) {
-					setIsValidId(true);
-					setIsValidIDMsg(true);
-				}
-			})
-			.catch(err => {
-				setIsValidIDMsg(false);
-			})
-	}
+	// 		.then(res => {
+	// 			if (res.status === 200) {
+	// 				setIsValidId(true);
+	// 				setIsValidIDMsg(true);
+	// 			}
+	// 		})
+	// 		.catch(err => {
+	// 			setIsValidIDMsg(false);
+	// 		})
+	// }
 
 	const handleJoin = (e) => {
 		e.preventDefault();
+
+		if (!selectedValue) {
+			alert("회원가입을 위해 동의해주세요.");
+			return;
+		}
+		
+		console.log("회원가입 성공!");
 
 		// // 회원가입 버튼 클릭
 		// if (!isValidId) {
 		// 	alert("아이디 중복확인을 확인을 완료해주세요.")
 		// 	return;
 		// }
+		
 
 		// 이메일, 비밀번호 이름이 없을 때
 		if (userName === '' || password === '') {
@@ -75,12 +84,12 @@ export default function Join() {
 			return;
 		}
 
-		// // 비밀번호 형식 테스트
-		// const passwordRegEx = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
-		// if (!(passwordRegEx.test(password))) {
-		// 	alert('비밀번호는 문자, 숫자, 특수기호가 포함(8~16자)되어야 합니다.')
-		// 	return;
-		// }
+		// 비밀번호 형식 테스트
+		const passwordRegEx = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
+		if (!(passwordRegEx.test(password))) {
+			alert('비밀번호는 문자, 숫자, 특수기호가 포함(8~16자)되어야 합니다.')
+			return;
+		}
 
 		// Create payload
 		const payload = {
@@ -108,14 +117,13 @@ export default function Join() {
 	};
 
 	return (
-		<div className='bg-white'>
-			<div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 ">
+		<div className=''>
+			<div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
 				<div className="sm:mx-auto sm:w-full sm:max-w-sm">
 					<h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">회원가입</h2>
 				</div>
-
 				<div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-					<form className="space-y-6" action="#" method="POST">
+					<form className="bg-white space-y-6 border p-6 rounded-lg" action="#" method="POST">
 						{/* <div className='flex flex-col'>
 							<label for="email" className="block text-sm font-medium leading-6 text-gray-900">이메일<span>
 								{
@@ -147,7 +155,7 @@ export default function Join() {
 							</div>
 							
 							<div className="mt-2">
-								<input id="username" type="text" value={userName} onChange={(e) => setUserName(e.target.value)} placeholder='  아이디를 입력하세요' className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset  sm:text-sm sm:leading-6" />
+								<input id="username" type="text" value={userName} onChange={(e) => setUserName(e.target.value)} placeholder='  아이디를 입력하세요' className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-black placeholder:text-gray-400 focus:ring-2 focus:ring-inset  sm:text-sm sm:leading-6" />
 							</div>
 						</div>
 						
@@ -156,7 +164,7 @@ export default function Join() {
 								<label for="password" className="block text-sm font-medium leading-6 text-gray-900">비밀번호</label>
 							</div>
 							<div className="mt-2">
-								<input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='  문자, 숫자, 특수문자 포함(8~16자)' className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset  sm:text-sm sm:leading-6" />
+								<input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='  문자, 숫자, 특수문자 포함(8~16자)' className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-black placeholder:text-gray-400 focus:ring-2 focus:ring-inset  sm:text-sm sm:leading-6" />
 							</div>
 						</div>
 						
@@ -165,12 +173,12 @@ export default function Join() {
 								<label for="confirmPassword" className="block text-sm font-medium leading-6 text-gray-900">비밀번호 확인</label>
 							</div>
 							<div className="mt-2">
-								<input id="confirmPassword" type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder='  문자, 숫자, 특수문자 포함(8~16자)' className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset  sm:text-sm sm:leading-6" />
+								<input id="confirmPassword" type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder='  문자, 숫자, 특수문자 포함(8~16자)' className="block w-full rounded-md border-0  py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-black placeholder:text-gray-400 focus:ring-2 focus:ring-inset  sm:text-sm sm:leading-6" />
 							</div>
 						</div>
 						<div className='w-full h-1/3 overflow-auto'>
  							<p className='mb-2'>이용약관</p>
- 							<textarea readOnly className='w-full h-32 border rounded-md overflow-auto resize-none'>
+ 							<textarea readOnly className='w-full h-32 border border-black rounded-md overflow-auto resize-none text-sm'>
 							 제1조(목적)
 이 약관은 (주)나인온스 (전자상거래 사업자)가 운영하는 (주)나인온스 사이버 몰(이하 “몰”이라 한다)에서 제공하는 인터넷 관련 서비스(이하 “서비스”라 한다)를 이용함에 있어 사이버 몰과 이용자의 권리․의무 및 책임사항을 규정함을 목적으로 합니다.
 ※「PC통신, 무선 등을 이용하는 전자상거래에 대해서도 그 성질에 반하지 않는 한 이 약관을 준용합니다.」
@@ -345,8 +353,8 @@ export default function Join() {
  							/><span>동의</span> 							
  						</div>
 						
-						<div>
-							<button onClick={handleJoin} className="flex w-full justify-center rounded-md bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Join</button>
+						<div className='flex justify-center items-center'>
+							<button onClick={handleJoin} className="flex w-full justify-center rounded-md bg-black px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">Join</button>
 						</div>
 					</form>
 

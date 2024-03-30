@@ -68,7 +68,7 @@ export default function PhotoResultPage(response) {
 				<BarChart response={response} />
 				</div> */}
       </div>
-      <h1 className='text-xl font-bold'>{`위 사진의 ${selectedCategory}와 어울리는 추천 상품`}</h1>
+      <h1 className='text-xl font-bold mb-8'>{`위 사진의 ${selectedCategory}와 어울리는 추천 상품`}</h1>
       <div className="flex gap-4 mb-4">
         {resp.upper.style !== -1 && <button onClick={() => handleCategoryClick('상의')} className={`border px-4 py-2 rounded-lg ${selectedCategory === '상의' ? 'bg-violet-300' : 'bg-white'}`}>상의</button>}
         {resp.skirt.style !== -1 && <button onClick={() => handleCategoryClick('치마')} className={`border px-4 py-2 rounded-lg ${selectedCategory === '치마' ? 'bg-violet-300' : 'bg-white'}`}>치마</button>}

@@ -113,7 +113,7 @@ export default function ClothesInfo() {
 
   return (
     <div className='flex'>
-      <div className='p-4 border-r border-black h-screen fixed left-0 min-w-[250px] max-w-[250px]'>
+      <div className='p-4 border-r border-black left-0 min-w-[250px] max-w-[250px] h-auto'>
         {/* <h2 className='font-bold mb-4 mt-16'>Categories</h2> */}
         <ClothesFilter setSubCategory={setSelectedCategory} setPageInit={setPage} />
         {/* {categories.map((category, index) => (
@@ -122,7 +122,7 @@ export default function ClothesInfo() {
           >{category}</button>
         ))} */}
       </div>
-      <div className='flex flex-col flex-grow ml-64 p-4'>
+      <div className='flex flex-col flex-grow p-4'>
         <h2 className='font-bold mb-4'>Products</h2>
         <div className='grid xl:grid-cols-5 lg:grid-cols-4 grid-cols-4 gap-4 min-w-[900px]'>
           {clothesList && clothesList.map((item, index) =>
