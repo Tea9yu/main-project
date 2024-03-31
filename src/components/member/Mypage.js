@@ -52,6 +52,9 @@ export default function Mypage(setIsLoggedIn) {
 		console.log("page=", page)
 		setPage(page);
 		getRecommendList(page);
+
+		// 페이지가 변경되면 화면을 최상단으로 스크롤
+		window.scrollTo(0, 0);
 	}
 
 	// Rerendering

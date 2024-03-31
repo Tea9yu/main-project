@@ -16,7 +16,7 @@ export default function Home() {
 				// style={{ width: '2000px', height: '1000px' }} 
 				/>
 			</div> */}
-			<div className='relative w-full h-screen flex flex-col justify-center items-center font-nanum mb-20'>
+			<div className='relative w-full h-screen flex flex-col justify-center items-center font-nanum'>
 				<div className='absolute top-[90px] text-[#A5A5A5]'>나만을 위한 옷을 찾는 여정</div>
 				<div className='absolute z-30 top-[100px] blur-[0.03rem] sm:text-[9svw] text-[100px]  text-[#FEFEFE]'>CHOICE</div>
 				<div className='absolute z-20 top-[200px] flex justify-center items-center  w-[25svw] min-w-64 shadow-[#616e75] shadow-xl  rounded-[6rem]'>

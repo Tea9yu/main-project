@@ -46,11 +46,7 @@ function App() {
             <Route path='/clothes' element={<ClothesInfo />} />
             <Route path='/detail/:productCode' element={<ClothesDetail />} />
             <Route path='/mypage' element={<Mypage />} />
-            <Route path='/admin' element={<AdminPage />} />
-            {/* <Route path='/food' element={<BusanFoodInfo />} />
-            <Route path='/list' element={<BoardList2 />} />            
-            <Route path='/view/:seq' element={<BoardDetail />} />
-            <Route path='/write' element={<BoardWrite />} />            */}
+            <Route path='/admin' element={<AdminPage />} />            
           </Routes>
           </div>
         </div>

@@ -53,6 +53,9 @@ export default function ClothesInfo() {
     console.log("page=", page)
     setPage(page);
     getClothesList(page);
+
+    // 페이지가 변경되면 화면을 최상단으로 스크롤
+    window.scrollTo(0, 0);
   }
   
     // 중분류 카테고리 클릭 시 처리할 함수

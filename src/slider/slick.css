@@ -2,8 +2,15 @@
 .slick-slider
 {
     position: relative;
-
-    display: block;
+    background: black;
+    display: flex;
+    width: 100%;
+    height: 595px;
+    /* margin: auto; */
+    /* flex: auto; */
+    /* z-index: 10; */
+    align-items: center;
+    justify-content: center;
     box-sizing: border-box;
 
     -webkit-user-select: none;
@@ -88,6 +95,7 @@
 }
 .slick-slide img
 {
+    z-index: 1;
     display: block;
 }
 .slick-slide.slick-loading img
