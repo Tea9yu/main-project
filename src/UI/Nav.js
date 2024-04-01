@@ -32,7 +32,7 @@ export default function Nav() {
 				<div className="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto">
 					<a href="#" className="flex items-center">
 						{/* <img src="https://www.svgrepo.com/show/499962/music.svg" className="h-6 mr-3 sm:h-9" alt="Landwind Logo" /> */}
-						<Link to='/'><span className="mr-10 self-center text-xl font-semibold whitespace-nowrap text-white">nine</span></Link>
+						<Link to='/'><span className="mr-10 self-center text-xl font-semibold whitespace-nowrap text-white">ClothiQ</span></Link>
 					</a>
 					<div className="flex items-center lg:order-2">
 						<div className="hidden mt-2 mr-4 sm:inline-block">
@@ -65,19 +65,19 @@ export default function Nav() {
 							</li>
 							<li>
 								<Link to='/upload'
-									className="block py-2 pl-3 pr-4 text-white border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-violet-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">SERVICE</Link>
+									className="block py-2 pl-3 pr-4 text-white border-b border-gray-100 hover:bg-violet-700 lg:hover:bg-transparent lg:border-0 lg:hover:text-violet-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">SERVICE</Link>
 							</li>
 							<li>
 								<Link to='/rerender'
-									className="block py-2 pl-3 pr-4 text-white border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-violet-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">RESULT</Link>
+									className="block py-2 pl-3 pr-4 text-white border-b border-gray-100 hover:bg-violet-700 lg:hover:bg-transparent lg:border-0 lg:hover:text-violet-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">RESULT</Link>
 							</li>
 							<li>
 								<Link to='/clothes'
-									className="block py-2 pl-3 pr-4 text-white border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-violet-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">의류</Link>
+									className="block py-2 pl-3 pr-4 text-white border-b border-gray-100 hover:bg-violet-700 lg:hover:bg-transparent lg:border-0 lg:hover:text-violet-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">의류</Link>
 							</li>
 							<li>
-								{user ? <Link to='/mypage	' className="block py-2 pl-3 pr-4 text-white border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-violet-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">MyPage</Link>
-								: <Link to='/login' className="block py-2 pl-3 pr-4 text-white border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-violet-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">로그인</Link>}
+								{user ? <Link to='/mypage	' className="block py-2 pl-3 pr-4 text-white border-b border-gray-100 hover:bg-violet-700 lg:hover:bg-transparent lg:border-0 lg:hover:text-violet-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">MyPage</Link>
+								: <Link to='/login' className="block py-2 pl-3 pr-4 text-white border-b border-gray-100 hover:bg-violet-700 lg:hover:bg-transparent lg:border-0 lg:hover:text-violet-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">로그인</Link>}
 							</li>
 						</ul>
 					</div>

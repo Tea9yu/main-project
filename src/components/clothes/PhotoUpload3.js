@@ -180,6 +180,7 @@ const ImageUpload = () => {
 			.catch(err => {
 				console.log("err", err);
 				setLoading(false);
+				alert("업로드 실패");
 			})
 
 
@@ -239,7 +240,7 @@ const ImageUpload = () => {
 				<div className='flex flex-col justify-center items-center'>
 					<div className='mt-5 flex gap-5 items-center p-2 rounded-2xl w-full'>
 						<input type="file" onChange={handleFileChange} ref={fileInputRef} style={{ display: 'none' }} /> {/* 파일 입력 요소를 숨깁니다 */}
-						<button className='border-4 border-[#3a3a3a] border-double rounded-sm bg-[#eee6bc] text-[#161616] hover:bg-[#ffecad] hover:text-[#161616]  p-2' onClick={handleFileButtonClick}>파일 첨부</button> {/* 사용자 정의 버튼을 추가합니다 */}
+						<button className='border-4  border-[#3a3a3a] border-double rounded-sm bg-[#eee6bc] text-[#161616] hover:bg-[#ffecad] hover:text-[#161616]  p-2' onClick={handleFileButtonClick}>파일 첨부</button> {/* 사용자 정의 버튼을 추가합니다 */}
 						{fileName && <p>선택된 파일: {fileName}</p>} {/* 선택한 파일의 이름을 표시합니다 */}
 					</div>
 

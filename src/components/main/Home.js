@@ -33,7 +33,7 @@ export default function Home() {
 						<div className='text-lg'>Sangmin Park</div>
 					</div>
 					<div className='flex flex-col justify-center items-center'>
-						<div className='text-sm'>DATA-SCIENCE</div>
+						<div className='text-sm'>DATA-ANALYSIS</div>
 						<div className='text-lg'>Jihyeon Ohk</div>
 					</div>
 				</div>

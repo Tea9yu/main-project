@@ -51,7 +51,7 @@ export default function ClothesFilter({ setSubCategory, setPageInit }) {
       <div className="flex flex-col justify-center items-center">
         <button className='relative border-b border-black p-2 m-1 mb-2 w-32 font-bold' onClick={handleSetALL}>
           <img src={plate} alt='plate.png' className='w-full h-auto' />
-          <div className='absolute top-9 text-white left-11 '>전체</div>
+          <div className='absolute top-9 text-white left-[48px] '>전체</div>
         </button>
         {Object.keys(categories).map((category) => (
           <div key={category}>
