@@ -171,6 +171,7 @@ export default function Mypage(setIsLoggedIn) {
 						<div className="w-1/4 py-2 ml-5">번호</div>
 						<div className="w-2/4 py-2">이미지명</div>
 						<div className="w-1/4 py-2">날짜</div>
+						{/* <div className="w-1/4 py-2">비고</div> */}
 					</div>
 					<div className="mypage-body">
 						{recommendTag}

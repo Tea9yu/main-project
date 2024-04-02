@@ -23,7 +23,7 @@ export default function Home() {
 					<img src={jy} alt='journey' className='rounded-[6rem] shadow-inner shadow-transparent' />
 				</div>
 				<div className='absolute z-10 top-[350px] w-screen h-[0.005rem] shadow-sm shadow-[#e3e2e2] bg-[#757575]'></div>
-				<div className='absolute z-30 top-[800px] text-[#FFFFFF]/50 font-garamond flex justify-evenly space-x-20'>
+				<div className='absolute z-30 top-[48svw] text-[#8d8585] sm:text-[#FFFFFF]/70 font-garamond flex justify-evenly space-x-20'>
 					<div className=' flex flex-col justify-center items-center'>
 						<div className='text-sm'>FRONT-END</div>
 						<div className='text-lg'>Taegyu Kang</div>
@@ -38,11 +38,11 @@ export default function Home() {
 					</div>
 				</div>
 			</div>
-			<div className='w-full mt-10'>
+			<div className='w-full mt-10 py-32'>
 				<ImageSlider />
 			</div>
 			{/* <div className='w-full mt-10'>
-				<Slide />
+				<ImageSlider />
 			</div> */}
 			<div className='w-full'>
 				<HomeInfo />
