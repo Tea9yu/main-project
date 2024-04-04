@@ -37,7 +37,7 @@ export default function LogForm() {
       setIsLoggedIn(true);
       localStorage.setItem('token', response.headers.authorization); // 토큰을 localStorage에 저장
       localStorage.setItem('username', id);
-      navigate("/");
+      navigate('/');
       window.location.reload(); // 로그인 성공 시 페이지 새로고침
     } catch (error) {
       // 로그인 실패 시 처리
